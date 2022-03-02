@@ -69,6 +69,7 @@ Atualiza o arquivo schema.prisma, após alguma alteração neste arquivo
 - Upload da foto 
 - Alteração da senha
 - Alteração dos dados cadastrais
+- Esqueci a senha com e-mail enviado ao usuário e o link de recuperação [(Aula de Referência)](https://www.youtube.com/watch?v=KC0ZuLhBPf4&list=PL7mik6do621Nl3qx9IOsEf2xtfw3Ym7i5&index=42)
 
 ## Hamburgers:
 - Listagem de lanches (Nome, ingredientes, valor)
