@@ -1,5 +1,7 @@
 # HBURGER API COM NESTJS
 
+Modelo que deverá ser implementado: [HBurguer](https://hburger-9a4f7.web.app/)
+
 ## Primeiros passos:
 
 Clone este projeto em seu computador:
@@ -57,3 +59,27 @@ Reverte a última alteração no banco de dados
     npx prisma generate
 
 Atualiza o arquivo schema.prisma, após alguma alteração neste arquivo
+
+---
+
+# Todo:
+
+## Usuários:
+- Criar a autenticação, com e-mail e senha e gerar um JWT
+- Upload da foto 
+- Alteração da senha
+- Alteração dos dados cadastrais
+
+## Hamburgers:
+- Listagem de lanches (Nome, ingredientes, valor)
+- Listagem dos pães (Nome, descrição e valor)
+- Listagem de carnes (Nome e valor)
+
+## Bandeja:
+- Salvar o lanche escolhido na conta do usuário (Lanche, pão, carne e valor total)
+- Retornar a quantidade total de lanches na bandeja
+- Exibir o valor total dos lanches escolhidos
+
+## Pedidos:
+- Listar todos os pedidos do usuário, com o número do pedido, data da compra, valor total e itens
+- Não permitir a exclusão de pedidos com mais de 1 dia de criação
