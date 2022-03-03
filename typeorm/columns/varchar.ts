@@ -1,6 +1,6 @@
 import { TableColumnOptions } from "typeorm";
 
-export function typeVarchar(name: string = "name", length: string = "255", nullable: boolean = false){
+export function varchar(name: string = "name", length: string = "255", nullable: boolean = false){
 
     return {
         name,
