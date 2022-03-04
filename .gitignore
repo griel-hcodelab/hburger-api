@@ -2,7 +2,7 @@
 .env
 .vscode
 ormconfig.json
-storage/
+storage/photos/
 
 
 # compiled output

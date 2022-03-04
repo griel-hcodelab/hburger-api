@@ -4,14 +4,16 @@ import { UpdateLoginDto } from './dto/update-login.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { join } from 'path';
+import { createReadStream, existsSync, renameSync, unlinkSync } from 'fs';
 
 @Injectable()
 export class LoginService {
 
 	constructor(private db: PrismaService, private jwt: JwtService) {}
 
-	async getToken(userId: number) {
-        const { email, id, Person } = await this.getById(userId);
+	async getToken(user_id: number) {
+        const { email, id, Person } = await this.getById(user_id);
 
 		const { name, photo } = Person[0];
 
@@ -28,14 +30,14 @@ export class LoginService {
         return this.jwt.decode(token);
     }
 
-	async getById(userId: number)
+	async getById(user_id: number)
 	{
 
-		if (!userId) {
+		if (!user_id) {
 			throw new UnauthorizedException("Este ID de usuário é inválido");
 		}
 
-		const id = Number(userId);
+		const id = Number(user_id);
 
 		if (isNaN(id)) {
 			throw new BadRequestException("Este ID de usuário é inválido");
@@ -64,6 +66,19 @@ export class LoginService {
 		});
 	}
 
+	async getPersonId(user_id: number)
+	{
+
+		const person = await this.db.person.findFirst({
+			where: {
+				user_id
+			}
+		});
+
+		return Number(person.id);
+
+	}
+
 	async checkPassword(id: number, password: string)
 	{
 		if (!password) {
@@ -88,10 +103,6 @@ export class LoginService {
 	}
 
 	async create({ email, password, name, birthAt, document, phone }: CreateLoginDto) {
-
-		if (document.length < 11) {
-			throw new BadRequestException("Insira um documento válido");
-		}
 
 		if (await this.getByEmail(email)) {
 			throw new BadRequestException("Este e-mail já está cadastrado")
@@ -139,19 +150,153 @@ export class LoginService {
 
 	}
 
-	findAll() {
-		return `This action returns all login`;
+
+
+	async update(id: number, data: UpdateLoginDto)
+	{
+
+		const person = await this.db.person.findFirst({
+			where: {
+				user_id: id
+			}
+		});
+
+		const updated = await this.db.person.update({
+			where: {
+				id: person.id
+			},
+			data
+		});
+
+		return updated
+		
 	}
 
-	findOne(id: number) {
-		return `This action returns a #${id} login`;
-	}
+	async updateOther(id: number, data: UpdateLoginDto)
+	{
 
-	update(id: number, updateLoginDto: UpdateLoginDto) {
-		return `This action updates a #${id} login`;
+		const person = await this.db.person.findFirst({
+			where: {
+				user_id: id
+			}
+		});
+
+		const updated = await this.db.person.update({
+			where: {
+				id: person.id
+			},
+			data
+		});
+
+		return updated
+		
 	}
 
 	remove(id: number) {
 		return `This action removes a #${id} login`;
 	}
+
+
+	/* Crud de Fotos do Usuário - Início */
+
+	getStoragePhoto(photo: string) {
+        if (!photo) {
+            throw new BadRequestException("O nome do arquivo é obrigatório.");
+        }
+
+        return join(__dirname, '../', '../', '../', 'storage', 'photos', photo);
+    }
+
+	async removeUserPhoto(user_id: number)
+	{
+		const id = await this.getPersonId(user_id);
+
+		const { photo } = await this.db.person.findFirst({
+			where: {
+				id
+			}
+		});
+
+		if (photo) {
+			const currentPhoto = this.getStoragePhoto(photo);
+
+            if (existsSync(currentPhoto)) {
+                unlinkSync(currentPhoto);
+            }
+		}
+
+		return this.update(user_id, {
+			photo: null
+		})
+	}
+
+	async setPhoto(id: number, file: Express.Multer.File)
+	{
+		if (!['image/png', 'image/jpeg'].includes(file.mimetype)) {
+            throw new BadRequestException('Invalid file type.');
+        }
+
+		let extension = '';
+
+		switch (file.mimetype) {
+            case 'image/png':
+                extension = 'png';
+                break;
+            case 'image/webp':
+                extension = 'webp';
+                break;
+
+            default:
+                extension = 'jpg';
+        }
+
+		const photo = `${Date.now()}-${file.filename}.${extension}`;
+
+		const from = this.getStoragePhoto(file.filename);
+        const to = this.getStoragePhoto(photo);
+
+		renameSync(from, to);
+
+		await this.removeUserPhoto(id);
+
+		await this.db.person.update({
+			where: {
+				id: await this.getPersonId(id)
+			},
+			data: {
+				photo
+			}
+		});
+
+
+	}
+
+	async getPhoto(user_id: number) {
+
+        const id = await this.getPersonId(user_id);
+
+		const { photo } = await this.db.person.findFirst({
+			where: {
+				id
+			}
+		});
+
+        let filePath = this.getStoragePhoto('../no-photo.webp');
+
+        if (photo) {
+            filePath = this.getStoragePhoto(photo);
+        }
+
+        const file = createReadStream(filePath);
+
+        const extension = filePath.split('.').pop();
+
+        return {
+            file,
+            extension,
+        };
+    }
+
+
+	/* Crud de Fotos do Usuário - Fim */
 }
