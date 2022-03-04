@@ -4,4 +4,9 @@ import { PaymentSituationsService } from './payment-situations.service';
 @Controller('payment-situations')
 export class PaymentSituationsController {
     constructor (private paymentSituationsService: PaymentSituationsService) {}
+
+    @Get('/')
+    async findAll() {
+        return this.paymentSituationsService.findAll();
+    }
 }
