@@ -73,3 +73,23 @@ model PasswordRecovery {
   @@index([user_id], map: "FK_password_recoveries_users")
   @@map("password_recoveries")
 }
+
+model PaymentSituation {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @db.DateTime(0)
+
+  @@map("payment_situations")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique(map: "name_UNIQUE") @db.VarChar(255)
+  description String   @db.VarChar(255)
+  price       Decimal  @db.Decimal(10, 2)
+  createdAt   DateTime @default(now()) @db.DateTime(0)
+  updatedAt   DateTime @default(now()) @db.DateTime(0)
+
+  @@map("products")
+}
