@@ -104,3 +104,18 @@ model IngredientType {
 
   @@map("ingredient_types")
 }
+
+model Ingredient {
+  id                 Int          @id @default(autoincrement())
+  name               String       @db.VarChar(255)
+  description        String?      @db.VarChar(255)
+  price              Decimal      @db.Decimal(10, 2)
+  ingredient_type_id Int
+  createdAt          DateTime     @default(now()) @db.DateTime(0)
+  updatedAt          DateTime     @default(now()) @db.DateTime(0)
+  ingredients        Ingredient   @relation("ingredientsToingredients_ingredient_type_id", fields: [ingredient_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_ingredients_ingredient_types")
+  other_ingredients  Ingredient[] @relation("ingredientsToingredients_ingredient_type_id")
+
+  @@index([ingredient_type_id], map: "FK_ingredients_ingredient_types")
+  @@map("ingredients")
+}
