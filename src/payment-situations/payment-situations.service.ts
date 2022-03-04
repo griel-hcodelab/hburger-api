@@ -37,4 +37,12 @@ export class PaymentSituationsService {
             data,
         });
     }
+
+    async delete(id: number) {
+        await this.findOne(id);
+
+        return this.prisma.paymentSituation.delete({
+            where: { id },
+        });
+    }
 }

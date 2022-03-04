@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { LoginGuard } from 'src/login/login.guard';
 import { CreatePaymentSituationDto } from './dto/create-payment-situation.dto';
 import { UpdatePaymentSituationDto } from './dto/update-payment-situation.dto';
@@ -28,5 +28,11 @@ export class PaymentSituationsController {
     @Patch('/:id')
     async update(@Param('id', ParseIntPipe) id, @Body() data: UpdatePaymentSituationDto) {
         return this.paymentSituationsService.update(id, data);
+    }
+
+    @UseGuards(LoginGuard)
+    @Delete('/:id')
+    async delete(@Param('id', ParseIntPipe) id) {
+        return this.paymentSituationsService.delete(id);
     }
 }
