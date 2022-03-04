@@ -1,0 +1,312 @@
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { CreateLoginDto } from './dto/create-login.dto';
+import { UpdateLoginDto } from './dto/update-login.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { join } from 'path';
+import { createReadStream, existsSync, renameSync, unlinkSync } from 'fs';
+
+@Injectable()
+export class LoginService {
+
+	constructor(private db: PrismaService, private jwt: JwtService) {}
+
+	async getToken(user_id: number) {
+        const { email, id, Person } = await this.getById(user_id);
+
+		const { name, photo } = Person[0];
+
+        return this.jwt.sign({ id, email, name, photo });
+    }
+
+	async decodeToken(token: string) {
+        try {
+            await this.jwt.verify(token);
+        } catch (e) {
+            throw new UnauthorizedException(e.message);
+        }
+
+        return this.jwt.decode(token);
+    }
+
+	async getById(user_id: number)
+	{
+
+		if (!user_id) {
+			throw new UnauthorizedException("Este ID de usuário é inválido");
+		}
+
+		const id = Number(user_id);
+
+		if (isNaN(id)) {
+			throw new BadRequestException("Este ID de usuário é inválido");
+		}
+
+		return this.db.user.findFirst({
+			where: {
+				id
+			},
+			include: {
+				Person: true
+			}
+		});
+	}
+
+	async getByEmail(email:string)
+	{
+		if (!email) {
+			throw new BadRequestException("O e-mail é obrigatório");
+		}
+
+		return this.db.user.findFirst({
+			where: {
+				email
+			}
+		});
+	}
+
+	async getPersonId(user_id: number)
+	{
+
+		const person = await this.db.person.findFirst({
+			where: {
+				user_id
+			}
+		});
+
+		return Number(person.id);
+
+	}
+
+	async checkPassword(id: number, password: string)
+	{
+		if (!password) {
+			throw new UnauthorizedException("O e-mail ou senha estão incorretos.");
+		}
+
+		const user = await this.db.user.findUnique({
+			where: {
+				id
+			}
+		});
+
+		const checked = await bcrypt.compare(password, user.password);
+
+		if (!checked) {
+			throw new UnauthorizedException("O e-mail ou senha estão incorretos.");
+		}
+
+		return checked;
+
+
+	}
+
+	async create({ email, password, name, birthAt, document, phone }: CreateLoginDto) {
+
+		if (await this.getByEmail(email)) {
+			throw new BadRequestException("Este e-mail já está cadastrado")
+		}
+
+		const user = await this.db.user.create({
+			data: {
+				email,
+				password
+			}
+		});
+
+		const person = await this.db.person.create({
+			data: {
+				user_id: user.id,
+				name,
+				birthAt,
+				document,
+				phone
+				
+			}
+		});
+
+		delete user.password;
+		delete person.user_id;
+
+		return {user, person};
+
+	}
+
+	async login(email: string, password: string)
+	{
+
+		const user = await this.getByEmail(email);
+
+		if (!user) {
+			throw new UnauthorizedException("O e-mail ou senha estão incorretos.");
+		}
+
+		await this.checkPassword(user.id, password);
+
+		const token = await this.getToken(user.id);
+
+		return {token};
+
+	}
+
+
+
+	async update(id: number, data: UpdateLoginDto)
+	{
+
+		const person = await this.db.person.findFirst({
+			where: {
+				user_id: id
+			}
+		});
+
+		const updated = await this.db.person.update({
+			where: {
+				id: person.id
+			},
+			data
+		});
+
+		return updated
+		
+	}
+
+	async updateOther(id: number, data: UpdateLoginDto)
+	{
+
+		const person = await this.db.person.findFirst({
+			where: {
+				user_id: id
+			}
+		});
+
+		const updated = await this.db.person.update({
+			where: {
+				id: person.id
+			},
+			data
+		});
+
+		return updated
+		
+	}
+
+	async remove(id: number) {
+		
+		const user = await this.db.user.delete({
+			where: {
+				id
+			}
+		});
+
+		delete(user.password);
+
+		return user;
+
+	}
+
+
+	/* Crud de Fotos do Usuário - Início */
+
+	getStoragePhoto(photo: string) {
+        if (!photo) {
+            throw new BadRequestException("O nome do arquivo é obrigatório.");
+        }
+
+        return join(__dirname, '../', '../', '../', 'storage', 'photos', photo);
+    }
+
+	async removeUserPhoto(user_id: number)
+	{
+		const id = await this.getPersonId(user_id);
+
+		const { photo } = await this.db.person.findFirst({
+			where: {
+				id
+			}
+		});
+
+		if (photo) {
+			const currentPhoto = this.getStoragePhoto(photo);
+
+            if (existsSync(currentPhoto)) {
+                unlinkSync(currentPhoto);
+            }
+		}
+
+		return this.update(user_id, {
+			photo: null
+		})
+	}
+
+	async setPhoto(id: number, file: Express.Multer.File)
+	{
+		if (!['image/png', 'image/jpeg'].includes(file.mimetype)) {
+            throw new BadRequestException('Invalid file type.');
+        }
+
+		let extension = '';
+
+		switch (file.mimetype) {
+            case 'image/png':
+                extension = 'png';
+                break;
+            case 'image/webp':
+                extension = 'webp';
+                break;
+
+            default:
+                extension = 'jpg';
+        }
+
+		const photo = `${Date.now()}-${file.filename}.${extension}`;
+
+		const from = this.getStoragePhoto(file.filename);
+        const to = this.getStoragePhoto(photo);
+
+		renameSync(from, to);
+
+		await this.removeUserPhoto(id);
+
+		await this.db.person.update({
+			where: {
+				id: await this.getPersonId(id)
+			},
+			data: {
+				photo
+			}
+		});
+
+
+	}
+
+	async getPhoto(user_id: number) {
+
+        const id = await this.getPersonId(user_id);
+
+		const { photo } = await this.db.person.findFirst({
+			where: {
+				id
+			}
+		});
+
+        let filePath = this.getStoragePhoto('../no-photo.webp');
+
+        if (photo) {
+            filePath = this.getStoragePhoto(photo);
+        }
+
+        const file = createReadStream(filePath);
+
+        const extension = filePath.split('.').pop();
+
+        return {
+            file,
+            extension,
+        };
+    }
+
+
+	/* Crud de Fotos do Usuário - Fim */
+}
