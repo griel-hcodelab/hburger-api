@@ -1,7 +1,8 @@
 # Custom
-.env
+
 .vscode
 ormconfig.json
+storage/photos/
 
 
 # compiled output
