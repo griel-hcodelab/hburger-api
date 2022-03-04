@@ -40,6 +40,18 @@ export class LoginController {
 	login(@Body('email') email: string, @Body('password') password: string)
 	{
 
+		if (!email || !password) {
+			throw new BadRequestException("O e-mail ou a senha estão incorretos.");
+		}
+
+		return this.loginService.login(email, password);
+
+	}
+
+	@Get('me')
+	findMe()
+	{
+		
 	}
 
 	@Get()
