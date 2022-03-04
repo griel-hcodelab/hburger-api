@@ -16,7 +16,7 @@ export class CreateLoginDto {
 
   photo: string;
 
-  birthAt: Date;
+  birthAt: string;
 
 
   document: string;
