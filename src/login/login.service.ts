@@ -12,6 +12,8 @@ export class LoginService {
 
 	constructor(private db: PrismaService, private jwt: JwtService) {}
 
+	/* Métodos de apoio - Início */
+
 	async getToken(user_id: number) {
         const { email, id, Person } = await this.getById(user_id);
 
@@ -102,6 +104,13 @@ export class LoginService {
 
 	}
 
+	/* Métodos de apoio - Final */
+
+
+
+
+	/* Crud do Usuário - Início */
+
 	async create({ email, password, name, birthAt, document, phone }: CreateLoginDto) {
 
 		if (await this.getByEmail(email)) {
@@ -149,7 +158,6 @@ export class LoginService {
 		return {token};
 
 	}
-
 
 
 	async update(id: number, data: UpdateLoginDto)
@@ -205,6 +213,8 @@ export class LoginService {
 		return user;
 
 	}
+
+	/* Crud do Usuário - Final */
 
 
 	/* Crud de Fotos do Usuário - Início */
@@ -309,4 +319,16 @@ export class LoginService {
 
 
 	/* Crud de Fotos do Usuário - Fim */
+	
+	
+	/* Recuperação de senha - Início */
+	
+	async recovery(email:string)
+	{
+		const user = await this.getByEmail(email);
+
+		console.log(user)
+	}
+	
+	/* Recuperação de senha - Final */
 }
