@@ -24,6 +24,7 @@ model Person {
   createdAt DateTime  @default(now()) @db.DateTime(0)
   updatedAt DateTime  @default(now()) @db.DateTime(0)
   User      User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_persons_users")
+  orders    Order[]  @relation("ordersTopersons")
 
   @@index([user_id], map: "FK_persons_users")
   @@map("persons")
@@ -56,6 +57,7 @@ model Address {
   createdAt  DateTime @default(now()) @db.DateTime(0)
   updatedAt  DateTime @default(now()) @db.DateTime(0)
   users      User     @relation("addressesTousers", fields: [person_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_addresses_users")
+  orders     Order[] @relation("addressesToorders")
 
   @@index([person_id], map: "FK_addresses_users")
   @@map("addresses")
@@ -79,17 +81,18 @@ model PaymentSituation {
   name      String   @db.VarChar(255)
   createdAt DateTime @default(now()) @db.DateTime(0)
   updatedAt DateTime @default(now()) @db.DateTime(0)
+  orders    Order[] @relation("ordersTopayment_situations")
 
   @@map("payment_situations")
 }
 
 model Product {
-  id                 Int                  @id @default(autoincrement())
-  name               String               @unique(map: "name_UNIQUE") @db.VarChar(255)
-  description        String               @db.VarChar(255)
-  price              Decimal              @db.Decimal(10, 2)
-  createdAt          DateTime             @default(now()) @db.DateTime(0)
-  updatedAt          DateTime             @default(now()) @db.DateTime(0)
+  id                 Int                 @id @default(autoincrement())
+  name               String              @unique(map: "name_UNIQUE") @db.VarChar(255)
+  description        String              @db.VarChar(255)
+  price              Decimal             @db.Decimal(10, 2)
+  createdAt          DateTime            @default(now()) @db.DateTime(0)
+  updatedAt          DateTime            @default(now()) @db.DateTime(0)
   product_ingredient ProductIngredient[] @relation("product_ingredientToproducts")
 
   @@map("products")
@@ -107,15 +110,15 @@ model IngredientType {
 }
 
 model Ingredient {
-  id                 Int                  @id @default(autoincrement())
-  name               String               @db.VarChar(255)
-  description        String?              @db.VarChar(255)
-  price              Decimal              @db.Decimal(10, 2)
+  id                 Int                 @id @default(autoincrement())
+  name               String              @db.VarChar(255)
+  description        String?             @db.VarChar(255)
+  price              Decimal             @db.Decimal(10, 2)
   ingredient_type_id Int
-  createdAt          DateTime             @default(now()) @db.DateTime(0)
-  updatedAt          DateTime             @default(now()) @db.DateTime(0)
-  ingredients        Ingredient           @relation("ingredientsToingredients_ingredient_type_id", fields: [ingredient_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_ingredients_ingredient_types")
-  other_ingredients  Ingredient[]         @relation("ingredientsToingredients_ingredient_type_id")
+  createdAt          DateTime            @default(now()) @db.DateTime(0)
+  updatedAt          DateTime            @default(now()) @db.DateTime(0)
+  ingredients        Ingredient          @relation("ingredientsToingredients_ingredient_type_id", fields: [ingredient_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_ingredients_ingredient_types")
+  other_ingredients  Ingredient[]        @relation("ingredientsToingredients_ingredient_type_id")
   product_ingredient ProductIngredient[] @relation("ingredientsToproduct_ingredient")
 
   @@index([ingredient_type_id], map: "FK_ingredients_ingredient_types")
@@ -131,4 +134,24 @@ model ProductIngredient {
   @@id([product_id, ingredient_id])
   @@index([ingredient_id], map: "FK_ingredients_product_ingredient")
   @@map("product_ingredient")
+}
+
+model Order {
+  id                   Int              @id @default(autoincrement())
+  person_id            Int
+  address_id           Int
+  payment_situation_id Int
+  total                Decimal          @db.Decimal(10, 2)
+  observations         String           @db.Text
+  createdAt            DateTime         @default(now()) @db.DateTime(0)
+  updatedAt            DateTime         @default(now()) @db.DateTime(0)
+  addresses            Address          @relation("addressesToorders", fields: [address_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_orders_addresses")
+  payment_situations   PaymentSituation @relation("ordersTopayment_situations", fields: [payment_situation_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_orders_payment_situations")
+  persons              Person           @relation("ordersTopersons", fields: [person_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_orders_persons")
+
+  @@index([address_id], map: "FK_orders_addresses")
+  @@index([payment_situation_id], map: "FK_orders_payment_situations")
+  @@index([person_id], map: "FK_orders_persons")
+
+  @@map("orders")
 }
