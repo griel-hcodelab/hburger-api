@@ -18,12 +18,27 @@ export class LoginService {
         return this.jwt.sign({ id, email, name, photo });
     }
 
+	async decodeToken(token: string) {
+        try {
+            await this.jwt.verify(token);
+        } catch (e) {
+            throw new UnauthorizedException(e.message);
+        }
+
+        return this.jwt.decode(token);
+    }
+
 	async getById(userId: number)
 	{
+
+		if (!userId) {
+			throw new UnauthorizedException("Este ID de usuário é inválido");
+		}
+
 		const id = Number(userId);
 
 		if (isNaN(id)) {
-			throw new BadRequestException("Este ID de usuário é inválido")
+			throw new BadRequestException("Este ID de usuário é inválido");
 		}
 
 		return this.db.user.findFirst({

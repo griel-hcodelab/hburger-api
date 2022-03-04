@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, UseGuards } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
 import { checkDate } from 'utils/checkDate';
 import * as bcrypt from 'bcrypt';
+import { LoginGuard } from './login.guard';
+import { Login } from './login.decorator';
 
 
 @Controller('login')
@@ -48,10 +50,11 @@ export class LoginController {
 
 	}
 
+	@UseGuards(LoginGuard)
 	@Get('me')
-	findMe()
+	findMe(@Login() login)
 	{
-		
+		return login
 	}
 
 	@Get()
