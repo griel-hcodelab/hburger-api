@@ -171,6 +171,5 @@ model OrderItem {
 
   @@index([order_id], map: "FK_order_items_orders")
   @@index([product_id], map: "FK_order_items_products")
-
   @@map("order_items")
 }
