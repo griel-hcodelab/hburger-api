@@ -30,14 +30,14 @@ model Person {
 }
 
 model User {
-  id                  Int                   @id @default(autoincrement())
-  email               String                @db.VarChar(255)
-  password            String                @db.VarChar(255)
-  createdAt           DateTime              @default(now()) @db.DateTime(0)
-  updatedAt           DateTime              @default(now()) @db.DateTime(0)
-  Address             Address[]             @relation("addressesTousers")
+  id               Int                @id @default(autoincrement())
+  email            String             @db.VarChar(255)
+  password         String             @db.VarChar(255)
+  createdAt        DateTime           @default(now()) @db.DateTime(0)
+  updatedAt        DateTime           @default(now()) @db.DateTime(0)
+  Address          Address[]          @relation("addressesTousers")
   PasswordRecovery PasswordRecovery[] @relation("password_recoveriesTousers")
-  Person              Person[]
+  Person           Person[]
 
   @@map("users")
 }
@@ -71,6 +71,14 @@ model PasswordRecovery {
   users     User      @relation("password_recoveriesTousers", fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_password_recoveries_users")
 
   @@index([user_id], map: "FK_password_recoveries_users")
-
   @@map("password_recoveries")
+}
+
+model PaymentSituation {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.DateTime(0)
+  updatedAt DateTime @default(now()) @db.DateTime(0)
+
+  @@map("payment_situations")
 }
