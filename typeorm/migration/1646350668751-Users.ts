@@ -9,7 +9,13 @@ export class Users1646350668751 implements MigrationInterface {
             name: "users",
             columns: [
                 columnId,
-                varchar("email"),
+                {
+                    name: "email",
+                    type: "VARCHAR",
+                    length: "255",
+                    isNullable: false,
+                    isUnique: true
+                },
                 varchar("password"),
                 createdAt,
                 updatedAt
