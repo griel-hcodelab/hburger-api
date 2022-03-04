@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { parse } from 'date-fns';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class LoginService {
@@ -49,6 +49,29 @@ export class LoginService {
 		});
 	}
 
+	async checkPassword(id: number, password: string)
+	{
+		if (!password) {
+			throw new UnauthorizedException("O e-mail ou senha estão incorretos.");
+		}
+
+		const user = await this.db.user.findUnique({
+			where: {
+				id
+			}
+		});
+
+		const checked = await bcrypt.compare(password, user.password);
+
+		if (!checked) {
+			throw new UnauthorizedException("O e-mail ou senha estão incorretos.");
+		}
+
+		return checked;
+
+
+	}
+
 	async create({ email, password, name, birthAt, document, phone }: CreateLoginDto) {
 
 		if (document.length < 11) {
@@ -81,6 +104,23 @@ export class LoginService {
 		delete person.user_id;
 
 		return {user, person};
+
+	}
+
+	async login(email: string, password: string)
+	{
+
+		const user = await this.getByEmail(email);
+
+		if (!user) {
+			throw new UnauthorizedException("O e-mail ou senha estão incorretos.");
+		}
+
+		await this.checkPassword(user.id, password);
+
+		const token = await this.getToken(user.id);
+
+		return {token};
 
 	}
 
