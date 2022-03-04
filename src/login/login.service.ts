@@ -192,8 +192,18 @@ export class LoginService {
 		
 	}
 
-	remove(id: number) {
-		return `This action removes a #${id} login`;
+	async remove(id: number) {
+		
+		const user = await this.db.user.delete({
+			where: {
+				id
+			}
+		});
+
+		delete(user.password);
+
+		return user;
+
 	}
 
 

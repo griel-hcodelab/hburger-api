@@ -112,10 +112,14 @@ export class LoginController {
 		return this.loginService.updateOther(userId, body);
 	}
 
-	// @Delete(':id')
-	// remove(@Param('id') id: string) {
-	// 	return this.loginService.remove(+id);
-	// }
+	@UseGuards(LoginGuard)
+	@Delete(':id')
+	remove(@Param('id') user_id: string) {
+
+		const id: number = checkNumber(user_id);
+
+		return this.loginService.remove(id);
+	}
 
 	/* Crud do Usuário - Final */
 
