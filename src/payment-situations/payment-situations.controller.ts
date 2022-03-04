@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, UseGuards } from '@nestjs/common';
+import { LoginGuard } from 'src/login/login.guard';
 import { CreatePaymentSituationDto } from './dto/create-payment-situation.dto';
 import { PaymentSituationsService } from './payment-situations.service';
 
@@ -16,6 +17,7 @@ export class PaymentSituationsController {
         return this.paymentSituationsService.findOne(id);
     }
 
+    @UseGuards(LoginGuard)
     @Post('/')
     async create(@Body() data: CreatePaymentSituationDto) {
         return this.paymentSituationsService.create(data);
