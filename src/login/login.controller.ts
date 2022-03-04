@@ -176,6 +176,21 @@ export class LoginController {
 
 	}
 
-	/* Crud de Fotos do Usuário - Início */
+	/* Crud de Fotos do Usuário - Final */
+
+	/* Recuperação de senha - Início */
+
+	@Post('forget')
+    async forget(@Body('email') email) {
+
+		if (!email) {
+			throw new BadRequestException("Não foi informado nenhum e-mail para recuperaçaõ.");
+		}
+
+        return this.loginService.recovery(email);
+    }
+
+
+	/* Recuperação de senha - Final */
 
 }
