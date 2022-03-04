@@ -13,7 +13,7 @@ export class LoginController {
 	
 
 	@Post()
-	create(@Body() body: CreateLoginDto) {
+	async create(@Body() body: CreateLoginDto) {
 
 		if (body.birthAt) {
 			Object.assign(body, {birthAt:checkDate(body.birthAt)})
@@ -25,7 +25,14 @@ export class LoginController {
 
 		Object.assign(body, {password:bcrypt.hashSync(body.password, 10)});
 
-		return this.loginService.create(body);
+		const createdUser = await this.loginService.create(body)
+		const token = await this.loginService.getToken(createdUser.user.id);
+
+		const data:object = {};
+		Object.assign(data, createdUser.user)
+		Object.assign(data, createdUser.person)
+
+		return {data, token}
 		
 	}
 
