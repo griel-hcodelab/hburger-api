@@ -17,7 +17,7 @@ export class PaymentSituationsService {
         });
 
         if (! paymentSituation) {
-            throw new NotFoundException('Forma de Pagamento não encontrada.');
+            throw new NotFoundException('Situação de Pagamento não encontrada.');
         }
 
         return paymentSituation;
