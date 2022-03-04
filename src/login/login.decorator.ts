@@ -5,12 +5,12 @@ export const Login = createParamDecorator(
     const request = ctx.switchToHttp().getRequest();
     if (field) {
       if (request.auth[field]) {
-          return request.auth[field];
+        return request.auth[field];
       } else {
-          return null;
+        return null;
       }
-  } else {
+    } else {
       return request.auth;
-  }
+    }
   },
 );
