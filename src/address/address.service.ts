@@ -36,6 +36,8 @@ export class AddressService {
       throw new NotFoundException("User not found.");
     }
 
+    console.log(person_id)
+
     return this.db.address.create({
       data: {
         person_id,
