@@ -12,8 +12,8 @@ export class IngredientTypes1646355262134 implements MigrationInterface {
                 varchar('description', '255', true),
                 {
                     name: 'repeatable',
-                    type: 'boolean',
-                    default: true,
+                    type: 'tinyint',
+                    default: 1,
                 },
                 createdAt,
                 updatedAt,
