@@ -32,7 +32,7 @@ model Person {
 
 model User {
   id               Int                @id @default(autoincrement())
-  email            String             @db.VarChar(255)
+  email            String             @unique(map: "UQ_97672ac88f789774dd47f7c8be3") @db.VarChar(255)
   password         String             @db.VarChar(255)
   createdAt        DateTime           @default(now()) @db.DateTime(0)
   updatedAt        DateTime           @default(now()) @db.DateTime(0)
@@ -171,6 +171,5 @@ model OrderItem {
 
   @@index([order_id], map: "FK_order_items_orders")
   @@index([product_id], map: "FK_order_items_products")
-
   @@map("order_items")
 }
