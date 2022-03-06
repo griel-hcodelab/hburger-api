@@ -180,6 +180,24 @@ export class LoginController {
 
 	/* Recuperação de senha - Início */
 
+	@UseGuards(LoginGuard)
+	@Put('password')
+	async changePassword(@Body('current_password') currentPassword:string, @Body('new_password') newPassword: string, @Login('email') email: string, @Login('id') id:number)
+	{
+
+		if (!currentPassword) {
+			throw new BadRequestException("Você precisa informar a sua senha atual.");
+		}
+		if (!newPassword || newPassword.length < 6) {
+			throw new BadRequestException("Você precisa informar uma nova senha válida, com pelo menos seis caracteres.");
+		}
+
+		newPassword = bcrypt.hashSync(newPassword, 10);
+
+		return this.loginService.changePassword({currentPassword, newPassword, email, id});
+
+	}
+
 	@Post('forget')
     async forget(@Body('email') email) {
 

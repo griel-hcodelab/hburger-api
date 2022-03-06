@@ -322,12 +322,34 @@ export class LoginService {
 	
 	
 	/* Recuperação de senha - Início */
+
+	async changePassword(data)
+	{
+
+		const result = await this.checkPassword(data.id, data.currentPassword);
+
+		if (result) {
+			const updated = await this.db.user.update({
+				where: {
+					id: data.id
+				},
+				data: {
+					password: data.newPassword
+				}
+			});
+
+			return updated;
+
+		}
+
+
+	}
 	
 	async recovery(email:string)
 	{
 		const user = await this.getByEmail(email);
 
-		console.log(user)
+		console.log(user.email)
 	}
 	
 	/* Recuperação de senha - Final */
