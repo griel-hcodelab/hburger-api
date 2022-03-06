@@ -13,9 +13,9 @@ import { PaymentSituationsModule } from './payment-situations/payment-situations
     PrismaModule,
     AddressModule,
     LoginModule,
-    PaymentSituationsModule
+    PaymentSituationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
