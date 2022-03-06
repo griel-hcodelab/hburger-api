@@ -1,3 +1,4 @@
+import { MailModule } from './mail/mail.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AddressModule } from './address/address.module';
 import { Module } from '@nestjs/common';
@@ -8,6 +9,7 @@ import { PaymentSituationsModule } from './payment-situations/payment-situations
 
 @Module({
   imports: [
+    MailModule,
     PrismaModule,
     AddressModule,
     LoginModule,
