@@ -9,6 +9,7 @@ import { IngredientTypesModule } from './ingredient-types/ingredient-types.modul
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { LoginModule } from './login/login.module';
 import { PaymentSituationsModule } from './payment-situations/payment-situations.module';
+import { ProductModule } from './product/product.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { PaymentSituationsModule } from './payment-situations/payment-situations
     PaymentSituationsModule,
     IngredientTypesModule,
     IngredientsModule,
+    ProductModule
   ],
   controllers: [
     AppController],
