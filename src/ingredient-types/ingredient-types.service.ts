@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { checkNumber } from 'utils/checkNumber';
 import { CreateIngredientTypeDto } from './dto/create-ingredient-type.dto';
 import { UpdateIngredientTypeDto } from './dto/update-ingredient-type.dto';
 
@@ -20,22 +21,28 @@ export class IngredientTypesService {
     }
 
     async isThereId(id: number) {
-      id = this.isValidNumber(id, "Id")
-      const ingredientType = this.db.ingredientType.findUnique({
-        where: {
-          id
+      id = checkNumber(id)
+
+        const ingredientType = await this.db.ingredientType.findUnique({
+          where: {
+            id
+          }
+        })
+
+        if(!ingredientType) {
+          throw new NotFoundException("Ingredient Type Não Encontrado")
         }
-      })
-      if(!ingredientType) {
-        throw new NotFoundException("Ingredient Type Não Encontrado")
-      }
-      return id
+
+
+      return true
     }
 
   //CREATE
 
   async create(data: CreateIngredientTypeDto) {
     
+    data.repeatable = checkNumber(data.repeatable)
+
     return this.db.ingredientType.create({
       data
     })
@@ -44,12 +51,16 @@ export class IngredientTypesService {
   //READ
 
   async findAll() {
-    this.db.ingredientType.findMany()
+    return this.db.ingredientType.findMany()
   }
 
   async findOne(id: number) {
 
-    id = await this.isThereId(id)
+    try {
+      await this.isThereId(id)
+    } catch (e) {
+      throw new NotFoundException("Ingredient Type Não Encontrado")
+    }
 
     return this.db.ingredientType.findUnique({
       where: {
@@ -61,7 +72,16 @@ export class IngredientTypesService {
   //UPDATE
 
   async update(id: number, data: UpdateIngredientTypeDto) {
-    id = await this.isThereId(id)
+    
+    try {
+      await this.isThereId(id)
+    } catch (e) {
+      throw new NotFoundException("Ingredient Type Não Encontrado")
+    }
+    
+
+
+    data.repeatable = checkNumber(data.repeatable)
 
     return this.db.ingredientType.update({
       where: {
@@ -73,8 +93,13 @@ export class IngredientTypesService {
 
   //DELETE
   async remove(id: number) {
+    
+    try {
+      await this.isThereId(id)
+    } catch (e) {
+      throw new NotFoundException("Ingredient Type Não Encontrado")
+    }
 
-    id = await this.isThereId(id)
     return this.db.ingredientType.delete({
       where: {
         id

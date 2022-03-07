@@ -1,19 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseIntPipe } from '@nestjs/common';
 import { IngredientTypesService } from './ingredient-types.service';
 import { CreateIngredientTypeDto } from './dto/create-ingredient-type.dto';
 import { UpdateIngredientTypeDto } from './dto/update-ingredient-type.dto';
+import { LoginGuard } from '../login/login.guard';
 
-@Controller('ingredient-types')
+@Controller('ingredients/types')
 export class IngredientTypesController {
   constructor(private readonly ingredientTypesService: IngredientTypesService) {}
 
+
+  @UseGuards(LoginGuard)
   @Post()
-  create(@Body() createIngredientTypeDto: CreateIngredientTypeDto) {
-    return this.ingredientTypesService.create(createIngredientTypeDto);
+  async create(@Body() data: CreateIngredientTypeDto) {
+
+    return this.ingredientTypesService.create(data)
   }
 
+
   @Get()
-  findAll() {
+  async findAll() {
     return this.ingredientTypesService.findAll();
   }
 
