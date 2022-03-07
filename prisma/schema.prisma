@@ -101,11 +101,12 @@ model Product {
 
 model IngredientType {
   id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
+  name        String   @unique(map: "name_UNIQUE") @db.VarChar(255)
   description String?  @db.VarChar(255)
-  repeatable  Boolean  @default(true)
+  repeatable  Int      @default(1) @db.TinyInt
   createdAt   DateTime @default(now()) @db.DateTime(0)
   updatedAt   DateTime @default(now()) @db.DateTime(0)
+
 
   @@map("ingredient_types")
 }
@@ -171,6 +172,5 @@ model OrderItem {
 
   @@index([order_id], map: "FK_order_items_orders")
   @@index([product_id], map: "FK_order_items_products")
-
   @@map("order_items")
 }

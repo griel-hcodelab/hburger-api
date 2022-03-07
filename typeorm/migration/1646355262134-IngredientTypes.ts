@@ -8,7 +8,13 @@ export class IngredientTypes1646355262134 implements MigrationInterface {
             name: 'ingredient_types',
             columns: [
                 columnId,
-                varchar('name'),
+                // varchar('name'),
+                {
+                    name: 'name',
+                    type: 'varchar',
+                    length: '255',
+                    isUnique: true
+                },
                 varchar('description', '255', true),
                 {
                     name: 'repeatable',
