@@ -47,26 +47,9 @@ export class LoginService {
 			throw new BadRequestException('Este ID de usuário é inválido');
 		}
 
-		return this.db.user.findFirst({
-			where: {
-				id,
-			},
-			include: {
-				Person: true,
-			},
-		});
-	}
-
-	async getByEmail(email: string) {
-
-
-		if (!email) {
-			throw new BadRequestException('O e-mail é obrigatório');
-		}
-
 		const user = await this.db.user.findFirst({
 			where: {
-				email,
+				id,
 			},
 			include: {
 				Person: true,
@@ -75,10 +58,27 @@ export class LoginService {
 
 		delete user.password;
 
-		if (user) {
-			return user;
+		return user;
+	}
+
+	async getByEmail(email:string)
+	{
+		if (!email) {
+			throw new BadRequestException("O e-mail é obrigatório");
 		}
 
+		const user = await this.db.user.findFirst({
+			where: {
+				email
+			},
+			include: {
+				Person: true
+			}
+		});
+
+		delete user.password;
+
+		return user;
 	}
 
 	async getPersonId(user_id: number) {
@@ -125,7 +125,7 @@ export class LoginService {
 		const user = await this.db.user.create({
 			data: {
 				email,
-				password,
+				password: bcrypt.hashSync(password, 10),
 			},
 		});
 
@@ -211,6 +211,7 @@ export class LoginService {
 	/* Crud de Fotos do Usuário - Início */
 
 	getStoragePhoto(photo: string) {
+
 		if (!photo) {
 			throw new BadRequestException('O nome do arquivo é obrigatório.');
 		}
@@ -279,6 +280,7 @@ export class LoginService {
 	}
 
 	async getPhoto(user_id: number) {
+		
 		const id = await this.getPersonId(user_id);
 
 		const { photo } = await this.db.person.findFirst({
@@ -316,9 +318,11 @@ export class LoginService {
 					id: data.id,
 				},
 				data: {
-					password: data.newPassword,
+					password: bcrypt.hashSync(data.newPassword, 10),
 				},
 			});
+
+			delete updated.password;
 
 			return updated;
 		}
@@ -359,6 +363,13 @@ export class LoginService {
 		return {
 			message: `Se ${email} existir em nossa base de dados, será enviado um e-mail com as instruções para mudar a sua senha. As instruções expiram em uma hora.`,
 		};
+	}
+
+	async reset(data)
+	{
+
+		console.log(data)
+
 	}
 
 	/* Recuperação de senha - Final */

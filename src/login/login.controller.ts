@@ -1,24 +1,8 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  BadRequestException,
-  UseGuards,
-  Put,
-  UseInterceptors,
-  UploadedFile,
-  Res,
-  StreamableFile,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, UseGuards, Put, UseInterceptors, UploadedFile, Res, StreamableFile, Query, } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
 import { checkDate } from 'utils/checkDate';
-import * as bcrypt from 'bcrypt';
 import { LoginGuard } from './login.guard';
 import { Login } from './login.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -34,6 +18,7 @@ export class LoginController {
 
   @Post()
   async create(@Body() body: CreateLoginDto) {
+
     Object.assign(body, { phone: checkPhone(body.phone) });
 
     if (body.document) {
@@ -50,7 +35,7 @@ export class LoginController {
       );
     }
 
-    Object.assign(body, { password: bcrypt.hashSync(body.password, 10) });
+    
 
     const createdUser = await this.loginService.create(body);
     const token = await this.loginService.getToken(createdUser.user.id);
@@ -116,8 +101,9 @@ export class LoginController {
   }
 
   @UseGuards(LoginGuard)
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') user_id: string) {
+
     const id: number = checkNumber(user_id);
 
     return this.loginService.remove(id);
@@ -137,7 +123,7 @@ export class LoginController {
     }),
   )
   @Put('photo')
-  setPhoto(@Login() login, @UploadedFile() photo: Express.Multer.File) {
+  async setPhoto(@Login() login, @UploadedFile() photo: Express.Multer.File) {
     if (!photo) {
       throw new BadRequestException('Você não escolheu uma foto para enviar.');
     }
@@ -157,20 +143,28 @@ export class LoginController {
       case 'jpg':
         response.set({ 'Content-Type': 'image/jpeg' });
         break;
+      case 'webp':
+        response.set({ 'Content-Type': 'image/webp' });
+        break;
     }
 
     return new StreamableFile(file);
   }
 
   @UseGuards(LoginGuard)
-  @Delete('photo')
+  @Delete('photo/delete')
   async removeUserPhoto(@Login('id') user_id) {
+
     const id: number = checkNumber(user_id);
 
     this.loginService.removeUserPhoto(id);
+
   }
 
   /* Crud de Fotos do Usuário - Final */
+
+
+  
 
   /* Recuperação de senha - Início */
 
@@ -191,8 +185,6 @@ export class LoginController {
       );
     }
 
-    newPassword = bcrypt.hashSync(newPassword, 10);
-
     return this.loginService.changePassword({
       currentPassword,
       newPassword,
@@ -210,6 +202,22 @@ export class LoginController {
     }
 
     return this.loginService.recovery(email);
+  }
+
+  @Post('reset')
+  async reset(@Query('token') token:string, @Body('password') password:string)
+  {
+
+	if (!token) {
+		throw new BadRequestException("Não foi possível validar o token informado.");
+	}
+
+	if (!password || password.length < 6) {
+		throw new BadRequestException("A senha informada é inválida. Informe uma senha com pelo menos seis caracteres.");
+	}
+
+	return this.loginService.reset({token, password});
+
   }
 
   /* Recuperação de senha - Final */

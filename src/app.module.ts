@@ -1,3 +1,4 @@
+
 import { MailModule } from './mail/mail.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AddressModule } from './address/address.module';
@@ -15,7 +16,8 @@ import { PaymentSituationsModule } from './payment-situations/payment-situations
     LoginModule,
     PaymentSituationsModule,
   ],
-  controllers: [AppController],
+  controllers: [
+    AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

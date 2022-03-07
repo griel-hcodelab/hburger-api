@@ -9,6 +9,6 @@
       }
     ],
     "watchAssets": true,
-    "webpack": true
+    "webpack": false
   }
 }
