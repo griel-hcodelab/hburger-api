@@ -17,7 +17,8 @@ export class LoginController {
   /* Crud do Usuário - Início */
 
   @Post()
-  async create(@Body() body: CreateLoginDto) {
+  async create(@Body() body: CreateLoginDto)
+  {
 
     Object.assign(body, { phone: checkPhone(body.phone) });
 
@@ -48,7 +49,8 @@ export class LoginController {
   }
 
   @Post('auth')
-  login(@Body('email') email: string, @Body('password') password: string) {
+  login(@Body('email') email: string, @Body('password') password: string)
+  {
     if (!email || !password) {
       throw new BadRequestException('O e-mail ou a senha estão incorretos.');
     }
@@ -58,13 +60,15 @@ export class LoginController {
 
   @UseGuards(LoginGuard)
   @Get('me')
-  findMe(@Login() login) {
+  findMe(@Login() login)
+  {
     return login;
   }
 
   @UseGuards(LoginGuard)
   @Patch()
-  update(@Login() login, @Body() body: UpdateLoginDto) {
+  update(@Login() login, @Body() body: UpdateLoginDto)
+  {
     if (body.phone) {
       Object.assign(body, { phone: checkPhone(body.phone) });
     }
@@ -82,7 +86,8 @@ export class LoginController {
 
   @UseGuards(LoginGuard)
   @Patch(':id')
-  updateOther(@Param('id') id: string, @Body() body: UpdateLoginDto) {
+  updateOther(@Param('id') id: string, @Body() body: UpdateLoginDto)
+  {
     if (body.phone) {
       Object.assign(body, { phone: checkPhone(body.phone) });
     }
@@ -102,7 +107,8 @@ export class LoginController {
 
   @UseGuards(LoginGuard)
   @Delete('delete/:id')
-  remove(@Param('id') user_id: string) {
+  remove(@Param('id') user_id: string)
+  {
 
     const id: number = checkNumber(user_id);
 
@@ -111,19 +117,16 @@ export class LoginController {
 
   /* Crud do Usuário - Final */
 
+
+
+
   /* Crud de Fotos do Usuário - Início */
 
   @UseGuards(LoginGuard)
-  @UseInterceptors(
-    FileInterceptor('file', {
-      dest: './storage/photos',
-      limits: {
-        fileSize: 5 * 1024 * 1024,
-      },
-    }),
-  )
+  @UseInterceptors(FileInterceptor('file', {dest: './storage/photos', limits: { fileSize: 5 * 1024 * 1024, }, }))
   @Put('photo')
-  async setPhoto(@Login() login, @UploadedFile() photo: Express.Multer.File) {
+  async setPhoto(@Login() login, @UploadedFile() photo: Express.Multer.File)
+  {
     if (!photo) {
       throw new BadRequestException('Você não escolheu uma foto para enviar.');
     }
@@ -133,7 +136,8 @@ export class LoginController {
 
   @UseGuards(LoginGuard)
   @Get('photo')
-  async getPhoto(@Login('id') id, @Res({ passthrough: true }) response) {
+  async getPhoto(@Login('id') id, @Res({ passthrough: true }) response)
+  {
     const { file, extension } = await this.loginService.getPhoto(id);
 
     switch (extension) {
@@ -153,7 +157,8 @@ export class LoginController {
 
   @UseGuards(LoginGuard)
   @Delete('photo/delete')
-  async removeUserPhoto(@Login('id') user_id) {
+  async removeUserPhoto(@Login('id') user_id)
+  {
 
     const id: number = checkNumber(user_id);
 
@@ -164,7 +169,7 @@ export class LoginController {
   /* Crud de Fotos do Usuário - Final */
 
 
-  
+
 
   /* Recuperação de senha - Início */
 
@@ -185,23 +190,20 @@ export class LoginController {
       );
     }
 
-    return this.loginService.changePassword({
-      currentPassword,
-      newPassword,
-      email,
-      id,
-    });
+    return this.loginService.changePassword({ currentPassword, newPassword, email, id });
   }
 
   @Post('forget')
-  async forget(@Body('email') email: string) {
+  async forget(@Body('email') email: string)
+  {
     if (!email) {
       throw new BadRequestException(
-        'Não foi informado nenhum e-mail para recuperaçaõ.',
+        'Não foi informado nenhum e-mail para recuperação.',
       );
     }
 
     return this.loginService.recovery(email);
+
   }
 
   @Post('reset')

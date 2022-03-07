@@ -14,11 +14,14 @@ import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
 export class LoginService {
+
+
 	constructor(private db: PrismaService, private jwt: JwtService, private mail: MailService) { }
 
 	/* Métodos de apoio - Início */
 
-	async getToken(user_id: number) {
+	async getToken(user_id: number)
+	{
 		const { email, id, Person } = await this.getById(user_id);
 
 		const { name, photo } = Person[0];
@@ -26,7 +29,8 @@ export class LoginService {
 		return this.jwt.sign({ id, email, name, photo });
 	}
 
-	async decodeToken(token: string) {
+	async decodeToken(token: string)
+	{
 		try {
 			await this.jwt.verify(token);
 		} catch (e) {
@@ -36,7 +40,8 @@ export class LoginService {
 		return this.jwt.decode(token);
 	}
 
-	async getById(user_id: number) {
+	async getById(user_id: number)
+	{
 		if (!user_id) {
 			throw new UnauthorizedException('Este ID de usuário é inválido');
 		}
@@ -81,7 +86,8 @@ export class LoginService {
 		return user;
 	}
 
-	async getPersonId(user_id: number) {
+	async getPersonId(user_id: number)
+	{
 		const person = await this.db.person.findFirst({
 			where: {
 				user_id,
@@ -91,7 +97,8 @@ export class LoginService {
 		return Number(person.id);
 	}
 
-	async checkPassword(id: number, password: string) {
+	async checkPassword(id: number, password: string)
+	{
 		if (!password) {
 			throw new UnauthorizedException('O e-mail ou senha estão incorretos.');
 		}
@@ -160,7 +167,8 @@ export class LoginService {
 		return { token };
 	}
 
-	async update(id: number, data: UpdateLoginDto) {
+	async update(id: number, data: UpdateLoginDto)
+	{
 		const person = await this.db.person.findFirst({
 			where: {
 				user_id: id,
@@ -177,7 +185,8 @@ export class LoginService {
 		return updated;
 	}
 
-	async updateOther(id: number, data: UpdateLoginDto) {
+	async updateOther(id: number, data: UpdateLoginDto)
+	{
 		const person = await this.db.person.findFirst({
 			where: {
 				user_id: id,
@@ -194,7 +203,8 @@ export class LoginService {
 		return updated;
 	}
 
-	async remove(id: number) {
+	async remove(id: number)
+	{
 		const user = await this.db.user.delete({
 			where: {
 				id,
@@ -210,7 +220,8 @@ export class LoginService {
 
 	/* Crud de Fotos do Usuário - Início */
 
-	getStoragePhoto(photo: string) {
+	getStoragePhoto(photo: string)
+	{
 
 		if (!photo) {
 			throw new BadRequestException('O nome do arquivo é obrigatório.');
@@ -219,7 +230,8 @@ export class LoginService {
 		return join(__dirname, '../', '../', '../', 'storage', 'photos', photo);
 	}
 
-	async removeUserPhoto(user_id: number) {
+	async removeUserPhoto(user_id: number)
+	{
 		const id = await this.getPersonId(user_id);
 
 		const { photo } = await this.db.person.findFirst({
@@ -241,7 +253,8 @@ export class LoginService {
 		});
 	}
 
-	async setPhoto(id: number, file: Express.Multer.File) {
+	async setPhoto(id: number, file: Express.Multer.File)
+	{
 		if (!['image/png', 'image/jpeg'].includes(file.mimetype)) {
 			throw new BadRequestException('Invalid file type.');
 		}
@@ -279,7 +292,8 @@ export class LoginService {
 		});
 	}
 
-	async getPhoto(user_id: number) {
+	async getPhoto(user_id: number)
+	{
 		
 		const id = await this.getPersonId(user_id);
 
@@ -309,7 +323,8 @@ export class LoginService {
 
 	/* Recuperação de senha - Início */
 
-	async changePassword(data) {
+	async changePassword(data)
+	{
 		const result = await this.checkPassword(data.id, data.currentPassword);
 
 		if (result) {
@@ -368,7 +383,59 @@ export class LoginService {
 	async reset(data)
 	{
 
-		console.log(data)
+
+		const token = await this.decodeToken(data.token);
+
+		const id = JSON.parse(JSON.stringify(token)).id;
+
+
+		const resetCheck = await this.db.passwordRecovery.findFirst({
+			where: {
+				token: data.token,
+				resetAt: null
+			}
+		});
+
+		if (!resetCheck) {
+			throw new BadRequestException("Esta recuperação de senha já foi utilizada. Se você esqueceu sua senha, faça uma nova solicitação.");
+		}
+
+		await this.db.passwordRecovery.updateMany({
+			where: {
+				token: {
+					equals: data.token
+				},
+				user_id: {
+					equals: id
+				}
+			},
+			data: {
+				resetAt: new Date()
+			}
+		});
+
+		const user = await this.db.user.update({
+			where: {
+				id
+			},
+			data: {
+				password: bcrypt.hashSync(data.password, 10),
+			}
+		});
+
+		return user;
+		
+
+	
+
+		// await this.db.user.update({
+		// 	where: {
+		// 		id: token.id
+		// 	},
+		// 	data: {
+		// 		password: bcrypt.hashSync(data.password, 10)
+		// 	}
+		// });
 
 	}
 
