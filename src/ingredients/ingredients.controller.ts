@@ -1,12 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import { LoginGuard } from 'src/login/login.guard';
 
 @Controller('ingredients')
 export class IngredientsController {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
+  @UseGuards(LoginGuard)
   @Post()
   async create(@Body() createIngredientDto: CreateIngredientDto) {
     return this.ingredientsService.create(createIngredientDto);
@@ -27,11 +29,13 @@ export class IngredientsController {
     return this.ingredientsService.findByTypeName(name)
   }
 
+  @UseGuards(LoginGuard)
   @Patch('/:id')
   async update(@Param('id') id: string, @Body() updateIngredientDto: UpdateIngredientDto) {
     return this.ingredientsService.update(+id, updateIngredientDto);
   }
 
+  @UseGuards(LoginGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.ingredientsService.remove(+id);

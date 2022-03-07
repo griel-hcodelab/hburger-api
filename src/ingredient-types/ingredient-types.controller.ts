@@ -27,11 +27,13 @@ export class IngredientTypesController {
     return this.ingredientTypesService.findOne(+id);
   }
 
+  @UseGuards(LoginGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateIngredientTypeDto: UpdateIngredientTypeDto) {
     return this.ingredientTypesService.update(+id, updateIngredientTypeDto);
   }
 
+  @UseGuards(LoginGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.ingredientTypesService.remove(+id);

@@ -51,6 +51,7 @@ export class IngredientsService {
 
       data.price = priceArray[0] + "." + priceArray[1]
       data.price = parseFloat(data.price).toFixed(2)
+      
       data.ingredient_type_id = checkNumber(data.ingredient_type_id)
 
       return data as CreateIngredientDto
@@ -86,7 +87,7 @@ export class IngredientsService {
 
   async findByTypeName(name: string) {
 
-    const ingredientType = await this.db.ingredientType.findUnique({
+    const ingredientType = await this.db.ingredientType.findFirst({
       where: {
         name
       }
@@ -105,11 +106,14 @@ export class IngredientsService {
 
     return allByType
   }
+
+
   // UPDATE
 
   async update(id: number, data: UpdateIngredientDto) {
     
     id = await this.isThereId(id)
+    
     data = this.isValidData(data)
 
     return this.db.ingredient.update({

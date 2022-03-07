@@ -29,7 +29,7 @@ export class Ingredients1646355686931 implements MigrationInterface {
         await queryRunner.createForeignKey('ingredients', new TableForeignKey({
             columnNames: ['ingredient_type_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'ingredients',
+            referencedTableName: 'ingredient_types',
             onDelete: 'CASCADE',
             name: 'FK_ingredients_ingredient_types',
         }));
