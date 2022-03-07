@@ -1,8 +1,4 @@
-import {
-	BadRequestException,
-	Injectable,
-	UnauthorizedException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -424,18 +420,6 @@ export class LoginService {
 		});
 
 		return user;
-		
-
-	
-
-		// await this.db.user.update({
-		// 	where: {
-		// 		id: token.id
-		// 	},
-		// 	data: {
-		// 		password: bcrypt.hashSync(data.password, 10)
-		// 	}
-		// });
 
 	}
 
