@@ -21,7 +21,7 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
           from: `HBurger <${process.env.MAIL_FROM}>`,
         },
         template: {
-          dir: resolve(__dirname, '../src/mail/templates'),
+          dir: resolve(__dirname, '../mail/templates'),
           adapter: new PugAdapter(),
           options: {
             strict: true,
