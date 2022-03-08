@@ -20,18 +20,21 @@ export class AddressController {
   @UseGuards(LoginGuard)
   @Get('my-addresses')
   async listByPerson(
-    @Login() login,
+    @Login('id') user_id,
   ) {
 
-    return this.addressService.findByPerson(login.id);
+    return this.addressService.findByPerson(user_id);
 
   }
 
   @UseGuards(LoginGuard)
   @Get(':id')
-  async getById(@Param('id', ParseIntPipe) id: number) {
+  async getById(
+    @Param('id', ParseIntPipe) id: number,
+    @Login('id', ParseIntPipe) user_id: number
+    ) {
 
-    return this.addressService.findOne(id);
+    return this.addressService.findMyAddress(id, user_id);
 
   }
 
@@ -39,10 +42,10 @@ export class AddressController {
   @Post()
   async createAddress(
     @Body() data: CreateAddressDto,
-    @Login() login,
+    @Login('id', ParseIntPipe) user_id: number,
   ) {
 
-    return this.addressService.create(login.user_id, data);
+    return this.addressService.create(user_id, data);
 
   }
 
@@ -51,10 +54,10 @@ export class AddressController {
   async updateAdress(
     @Body() data: UpdateAddressDto,
     @Param('id', ParseIntPipe) id: number,
-    @Login() login,
+    @Login('id', ParseIntPipe) user_id: number,
   ) {
 
-    return this.addressService.update(id, login.user_id, data);
+    return this.addressService.update(id, user_id, data);
 
   }
 
@@ -62,9 +65,9 @@ export class AddressController {
   @Delete(':id')
   async deleteAddress(
     @Param('id', ParseIntPipe) id: number,
-    @Login() login,
+    @Login('id', ParseIntPipe) user_id: number,
   ) {
 
-    return this.addressService.delete(id, login.user_id);
+    return this.addressService.delete(id, user_id);
   }
 }
