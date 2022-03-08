@@ -35,8 +35,19 @@ export class AddressService {
 
     return this.db.address.findUnique({
       where: {
-        id: isValidId(id),
+        id: checkNumber(id),
       },
+    });
+  }
+
+  async findByPerson(user_id: number) {
+
+    const person_id = await this.login.getPersonId(user_id);
+
+    return this.db.address.findMany({
+      where: {
+        person_id,
+      }
     });
   }
 
