@@ -30,7 +30,9 @@ export class AddressController {
   @UseGuards(LoginGuard)
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number) {
+
     return this.addressService.findOne(id);
+
   }
 
   @UseGuards(LoginGuard)
