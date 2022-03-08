@@ -14,7 +14,7 @@ export class OrderService {
   ) { }
 
   async create(data: CreateOrderDto, user_id) {
-    const personId = await this.login.getPersonId(user_id);
+    const person_id = await this.login.getPersonId(user_id);
 
   }
 
