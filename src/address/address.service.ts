@@ -44,8 +44,6 @@ export class AddressService {
 
     const person_id = await this.login.getPersonId(user_id);
 
-    console.log(person_id);
-
     return this.db.address.findMany({
       where: {
         person_id,
