@@ -64,6 +64,7 @@ export class LoginService {
 
 	async getByEmail(email:string)
 	{
+
 		if (!email) {
 			throw new BadRequestException("O e-mail é obrigatório");
 		}
@@ -77,9 +78,11 @@ export class LoginService {
 			}
 		});
 
-		delete user.password;
+		if (user) {
+			delete user.password;
+			return user;
+		}
 
-		return user;
 	}
 
 	async getPersonId(user_id: number)
