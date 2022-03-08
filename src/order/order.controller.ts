@@ -3,14 +3,17 @@ import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { LoginGuard } from 'src/login/login.guard';
+import { Login } from 'src/login/login.decorator';
 
 @Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) { }
 
+  @UseGuards(LoginGuard)
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.orderService.create(createOrderDto);
+  create(@Body() createOrderDto: CreateOrderDto,
+    @Login() login) {
+    return this.orderService.create(createOrderDto, login.user_id);
   }
 
   @UseGuards(LoginGuard)

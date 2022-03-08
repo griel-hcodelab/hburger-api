@@ -56,10 +56,10 @@ model Address {
   person_id  Int
   createdAt  DateTime @default(now()) @db.DateTime(0)
   updatedAt  DateTime @default(now()) @db.DateTime(0)
-  persons    Person   @relation("addressesTopersons", fields: [person_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_addresses_users")
+  persons    Person   @relation("addressesTopersons", fields: [person_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_addresses_persons")
   orders     Order[]  @relation("addressesToorders")
 
-  @@index([person_id], map: "FK_addresses_users_idx")
+  @@index([person_id], map: "FK_addresses_persons")
   @@map("addresses")
 }
 
@@ -101,7 +101,7 @@ model Product {
 
 model IngredientType {
   id          Int          @id @default(autoincrement())
-  name        String       @db.VarChar(255)
+  name        String       @unique(map: "UQ_83c7e6a801c20097599d327bd03") @db.VarChar(255)
   description String?      @db.VarChar(255)
   repeatable  Int          @default(1) @db.TinyInt
   createdAt   DateTime     @default(now()) @db.DateTime(0)
@@ -116,13 +116,13 @@ model Ingredient {
   name               String              @db.VarChar(255)
   description        String?             @db.VarChar(255)
   price              Decimal             @db.Decimal(10, 2)
-  ingredient_type_id Int                 
+  ingredient_type_id Int
   createdAt          DateTime            @default(now()) @db.DateTime(0)
   updatedAt          DateTime            @default(now()) @db.DateTime(0)
   ingredient_types   IngredientType      @relation("ingredient_typesToingredients", fields: [ingredient_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_ingredients_ingredient_types")
   product_ingredient ProductIngredient[] @relation("ingredientsToproduct_ingredient")
 
-  @@index([ingredient_type_id], map: "FK_ingredients_ingredient_types_idx")
+  @@index([ingredient_type_id], map: "FK_ingredients_ingredient_types")
   @@map("ingredients")
 }
 

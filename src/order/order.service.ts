@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { LoginService } from 'src/login/login.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -8,10 +9,13 @@ export class OrderService {
 
   constructor(
     private db: PrismaService,
+    private login: LoginService,
+
   ) { }
 
-  async create(data: CreateOrderDto) {
-    return 'This action adds a new order';
+  async create(data: CreateOrderDto, user_id) {
+    const personId = await this.login.getPersonId(user_id);
+
   }
 
   async findAll() {

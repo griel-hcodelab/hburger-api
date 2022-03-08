@@ -9,4 +9,6 @@ export class CreateOrderDto {
 
     @IsString()
     observations?: string;
+
+    addressId: string;
 }
