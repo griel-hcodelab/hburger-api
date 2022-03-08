@@ -1,4 +1,3 @@
-
 import { MailModule } from './mail/mail.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AddressModule } from './address/address.module';

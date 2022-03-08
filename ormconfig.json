@@ -1,21 +1,11 @@
 {
-<<<<<<< HEAD
-    "database":"hburger",
-    "username":"developer",
-    "password":"Matana16011986",
+  "database":"hburger",
+  "username":"developer",
+  "password":"Matana16011986",
     
-    "type":"mysql",
-    "host":"localhost",
-    "port":3306,
-=======
-  "database": "hburger",
-  "username": "hburger",
-  "password": "isuTZEk9MbU8VG5@Tvl4z02&qWTW2@JFGOt6Y*Z%gk5gJ",
->>>>>>> e56ca9c5d859128cac0dc4c0c96464ebafd0cd1d
-
-  "type": "mysql",
-  "host": "localhost",
-  "port": 3306,
+  "type":"mysql",
+  "host":"localhost",
+  "port":3306,
 
   "synchronize": true,
   "logging": true,
