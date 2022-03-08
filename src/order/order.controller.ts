@@ -12,8 +12,8 @@ export class OrderController {
   @UseGuards(LoginGuard)
   @Post()
   create(@Body() createOrderDto: CreateOrderDto,
-    @Login() login) {
-    return this.orderService.create(createOrderDto, login.user_id);
+    @Login('id') user_id) {
+    return this.orderService.create(createOrderDto, user_id);
   }
 
   @UseGuards(LoginGuard)
@@ -23,9 +23,15 @@ export class OrderController {
   }
 
   @UseGuards(LoginGuard)
+  @Get('/me')
+  findMe(@Login('id') user_id) {
+    return this.orderService.findMe(user_id);
+  }
+
+  @UseGuards(LoginGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id);
+  findOne(@Login('id') user_id, @Param('id') id: string) {
+    return this.orderService.findOne(user_id, +id);
   }
 
   @UseGuards(LoginGuard)

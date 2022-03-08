@@ -9,4 +9,10 @@ export class CreateOrderDto {
 
     @IsString()
     observations?: string;
+
+    @IsNumberString()
+    address_id: number;
+
+    @IsNumberString()
+    payment_situation_id: number;
 }

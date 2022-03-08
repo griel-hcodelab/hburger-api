@@ -20,10 +20,10 @@ export class AddressController {
   @UseGuards(LoginGuard)
   @Get('my-addresses')
   async listByPerson(
-    @Login() login,
+    @Login('id') login,
   ) {
 
-    return this.addressService.findByPerson(login.id);
+    return this.addressService.findByPerson(login);
 
   }
 
@@ -39,10 +39,10 @@ export class AddressController {
   @Post()
   async createAddress(
     @Body() data: CreateAddressDto,
-    @Login() login,
+    @Login('id') login,
   ) {
 
-    return this.addressService.create(login.user_id, data);
+    return this.addressService.create(login, data);
 
   }
 
@@ -51,10 +51,10 @@ export class AddressController {
   async updateAdress(
     @Body() data: UpdateAddressDto,
     @Param('id', ParseIntPipe) id: number,
-    @Login() login,
+    @Login('id') login,
   ) {
 
-    return this.addressService.update(id, login.user_id, data);
+    return this.addressService.update(id, login, data);
 
   }
 
@@ -62,9 +62,9 @@ export class AddressController {
   @Delete(':id')
   async deleteAddress(
     @Param('id', ParseIntPipe) id: number,
-    @Login() login,
+    @Login('id') login,
   ) {
 
-    return this.addressService.delete(id, login.user_id);
+    return this.addressService.delete(id, login);
   }
 }
