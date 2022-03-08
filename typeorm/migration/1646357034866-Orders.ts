@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 import { columnId, createdAt, updatedAt } from "../columns";
 
 export class Orders1646357034866 implements MigrationInterface {
@@ -30,6 +30,7 @@ export class Orders1646357034866 implements MigrationInterface {
                 {
                     name: 'observations',
                     type: 'text',
+                    isNullable: true
                 },
                 createdAt,
                 updatedAt,

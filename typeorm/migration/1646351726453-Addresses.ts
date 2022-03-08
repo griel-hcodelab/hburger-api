@@ -32,16 +32,16 @@ export class Addresses1646351726453 implements MigrationInterface {
         await queryRunner.createForeignKey("addresses", new TableForeignKey({
             columnNames: ["person_id"],
             referencedColumnNames: ["id"],
-            referencedTableName: "users",
+            referencedTableName: "persons",
             onDelete: "CASCADE",
-            name: "FK_addresses_users"
+            name: "FK_addresses_persons"
 
         }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void>
     {
-        await queryRunner.dropForeignKey("addresses","FK_addresses_users");
+        await queryRunner.dropForeignKey("addresses","FK_addresses_persons");
         await queryRunner.dropTable("addresses");
     }
 
