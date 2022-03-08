@@ -1,5 +1,4 @@
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 
 
@@ -22,7 +21,7 @@ export class LoginGuard implements CanActivate {
 	
 			req.auth = await this.loginService.decodeToken(token);
 
-			req.user = this.loginService.getById(req.auth.id);
+			req.user = await this.loginService.getById(req.auth.id);
 
 		} catch(e) {
 			return false;

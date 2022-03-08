@@ -24,6 +24,7 @@ model Person {
   createdAt DateTime  @default(now()) @db.DateTime(0)
   updatedAt DateTime  @default(now()) @db.DateTime(0)
   User      User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_persons_users")
+  addresses Address[] @relation("addressesTopersons")
   orders    Order[]   @relation("ordersTopersons")
 
   @@index([user_id], map: "FK_persons_users")
@@ -36,7 +37,6 @@ model User {
   password         String             @db.VarChar(255)
   createdAt        DateTime           @default(now()) @db.DateTime(0)
   updatedAt        DateTime           @default(now()) @db.DateTime(0)
-  Address          Address[]          @relation("addressesTousers")
   PasswordRecovery PasswordRecovery[] @relation("password_recoveriesTousers")
   Person           Person[]
 
@@ -56,10 +56,10 @@ model Address {
   person_id  Int
   createdAt  DateTime @default(now()) @db.DateTime(0)
   updatedAt  DateTime @default(now()) @db.DateTime(0)
-  users      User     @relation("addressesTousers", fields: [person_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_addresses_users")
+  persons    Person   @relation("addressesTopersons", fields: [person_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_addresses_users")
   orders     Order[]  @relation("addressesToorders")
 
-  @@index([person_id], map: "FK_addresses_users")
+  @@index([person_id], map: "FK_addresses_users_idx")
   @@map("addresses")
 }
 
@@ -100,12 +100,13 @@ model Product {
 }
 
 model IngredientType {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
-  description String?  @db.VarChar(255)
-  repeatable  Boolean  @default(true)
-  createdAt   DateTime @default(now()) @db.DateTime(0)
-  updatedAt   DateTime @default(now()) @db.DateTime(0)
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar(255)
+  description String?      @db.VarChar(255)
+  repeatable  Int          @default(1) @db.TinyInt
+  createdAt   DateTime     @default(now()) @db.DateTime(0)
+  updatedAt   DateTime     @default(now()) @db.DateTime(0)
+  ingredients Ingredient[] @relation("ingredient_typesToingredients")
 
   @@map("ingredient_types")
 }
@@ -115,14 +116,13 @@ model Ingredient {
   name               String              @db.VarChar(255)
   description        String?             @db.VarChar(255)
   price              Decimal             @db.Decimal(10, 2)
-  ingredient_type_id Int
+  ingredient_type_id Int                 
   createdAt          DateTime            @default(now()) @db.DateTime(0)
   updatedAt          DateTime            @default(now()) @db.DateTime(0)
-  ingredients        Ingredient          @relation("ingredientsToingredients_ingredient_type_id", fields: [ingredient_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_ingredients_ingredient_types")
-  other_ingredients  Ingredient[]        @relation("ingredientsToingredients_ingredient_type_id")
+  ingredient_types   IngredientType      @relation("ingredient_typesToingredients", fields: [ingredient_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_ingredients_ingredient_types")
   product_ingredient ProductIngredient[] @relation("ingredientsToproduct_ingredient")
 
-  @@index([ingredient_type_id], map: "FK_ingredients_ingredient_types")
+  @@index([ingredient_type_id], map: "FK_ingredients_ingredient_types_idx")
   @@map("ingredients")
 }
 
