@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { userInfo } from 'os';
 import { Login } from 'src/login/login.decorator';
 import { LoginGuard } from 'src/login/login.guard';
 import { AddressService } from './address.service';
@@ -17,9 +18,21 @@ export class AddressController {
   }
 
   @UseGuards(LoginGuard)
+  @Get('my-addresses')
+  async listByPerson(
+    @Login() login,
+  ) {
+
+    return this.addressService.findByPerson(login.id);
+
+  }
+
+  @UseGuards(LoginGuard)
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number) {
+
     return this.addressService.findOne(id);
+
   }
 
   @UseGuards(LoginGuard)
