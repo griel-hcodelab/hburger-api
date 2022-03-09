@@ -15,4 +15,8 @@ export class CreateOrderDto {
 
     @IsNumberString()
     payment_situation_id: number;
+
+    product_id: string;
+
+    quantity: string;
 }

@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { LoginService } from 'src/login/login.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { isValidId } from 'utils/checkId';
 import { checkNumber } from 'utils/checkNumber';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
@@ -46,8 +45,7 @@ export class AddressService {
     return address;
   }
 
-  async findMyAddress(address_id: number, user_id: number)
-  {
+  async findMyAddress(address_id: number, user_id: number) {
     const person_id = await this.login.getPersonId(user_id);
 
     await this.isValidPerson(address_id, person_id);
