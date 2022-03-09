@@ -192,6 +192,11 @@ export class LoginService {
 			},
 		});
 
+		if (!person) 
+		{
+			throw new BadRequestException("Pessoa não encontrada.");
+		}
+
 		const updated = await this.db.person.update({
 			where: {
 				id: person.id,
