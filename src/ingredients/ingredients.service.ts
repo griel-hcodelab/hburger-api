@@ -44,7 +44,7 @@ export class IngredientsService {
 
       data.price = data.price.toString()
 
-      const priceArray = data.price.split(",")
+      const priceArray = data.price.split(".")
       if(priceArray.length!=2 || priceArray[1].length!=2) {
         throw new BadRequestException("Incorrect Price Format")
       }
