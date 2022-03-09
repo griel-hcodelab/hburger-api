@@ -141,7 +141,7 @@ model Order {
   id                   Int              @id @default(autoincrement())
   person_id            Int
   address_id           Int
-  payment_situation_id Int
+  payment_situation_id Int              @default(1)
   total                Decimal          @db.Decimal(10, 2)
   observations         String?          @db.Text
   createdAt            DateTime         @default(now()) @db.DateTime(0)

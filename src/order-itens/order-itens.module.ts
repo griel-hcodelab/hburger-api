@@ -19,5 +19,6 @@ import { LoginService } from 'src/login/login.service';
   ],
   controllers: [OrderItensController],
   providers: [OrderItensService],
+  exports: [OrderItensService],
 })
 export class OrderItensModule { }

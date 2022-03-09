@@ -6,4 +6,16 @@ export class CreateOrderItemDto {
         message: "A quantidade do produto precisar ser informada"
     })
     quantity: number;
+
+    @IsNumberString()
+    order_id: number;
+
+    @IsNumberString()
+    product_id: number;
+
+    @IsString()
+    product_name: string;
+
+    @IsNumberString()
+    price: number;
 }

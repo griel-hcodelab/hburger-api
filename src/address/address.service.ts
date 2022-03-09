@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { LoginService } from 'src/login/login.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { isValidId } from 'utils/checkId';
 import { checkNumber } from 'utils/checkNumber';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
@@ -11,11 +10,11 @@ export class AddressService {
 
   constructor(private db: PrismaService, private login: LoginService) { }
 
-  async isValidPerson(id: number, person_id: number) {
+  async isValidPerson(address_id: number, person_id: number) {
 
     person_id = checkNumber(person_id);
 
-    const address = await this.findOne(checkNumber(id));
+    const address = await this.findOne(checkNumber(address_id));
 
     if (address.person_id !== person_id) {
 
@@ -33,11 +32,32 @@ export class AddressService {
 
   async findOne(id: number) {
 
-    return this.db.address.findUnique({
+    const address = await this.db.address.findUnique({
       where: {
         id: checkNumber(id),
       },
     });
+
+    if (!address) {
+      throw new BadRequestException("Não existe o endereço solicitado.");
+    }
+
+    return address;
+  }
+
+  async findMyAddress(address_id: number, user_id: number) {
+    const person_id = await this.login.getPersonId(user_id);
+
+    await this.isValidPerson(address_id, person_id);
+
+    const address = await this.db.address.findFirst({
+      where: {
+        id: address_id,
+        person_id
+      }
+    });
+
+    return address;
   }
 
   async findByPerson(user_id: number) {
