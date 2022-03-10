@@ -40,8 +40,8 @@ export class IngredientsService {
       if(!data.name || !data.description || !data.price) {
         throw new BadRequestException('One or more required fields are empty')
       }
-
-
+      data.price = Number(data.price)
+/*
       data.price = data.price.toString()
 
       const priceArray = data.price.split(".")
@@ -51,7 +51,7 @@ export class IngredientsService {
 
       data.price = priceArray[0] + "." + priceArray[1]
       data.price = parseFloat(data.price).toFixed(2)
-      
+*/      
       data.ingredient_type_id = checkNumber(data.ingredient_type_id)
 
       return data as CreateIngredientDto
@@ -61,9 +61,10 @@ export class IngredientsService {
 
   // CREATE
   async create(data: CreateIngredientDto) {
-
+    
     data = this.isValidData(data)
-
+    console.log(data)
+   
     return this.db.ingredient.create({
       data
     })
