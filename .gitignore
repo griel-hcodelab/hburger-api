@@ -1,7 +1,7 @@
 # Custom
 .env
-.vscode
 ormconfig.json
+.vscode
 storage/photos/
 
 
