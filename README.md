@@ -30,7 +30,11 @@ Para melhor organização do projeto, crie uma branch com seu nome e envie todas
 
     git checkout -b SeuNome
 
-Commite todas as suas alterações, mesmo que seja pequena!
+*Commite* todas as suas alterações, mesmo que seja pequena!
+
+Sempre que baixar uma mudança de outra branch, execute o instalador do NPM para garantir que os novos pacotes estejam instalados:
+
+    npm install
 
 ---
 
@@ -84,3 +88,14 @@ Atualiza o arquivo schema.prisma, após alguma alteração neste arquivo
 ## Pedidos:
 - Listar todos os pedidos do usuário, com o número do pedido, data da compra, valor total e itens
 - Não permitir a exclusão de pedidos com mais de 1 dia de criação
+
+---
+
+# Autores:
+
+- [Davi Matana](https://github.com/matananh)
+- [Diego Henrique](https://github.com/DiegoReports)
+- [Guilherme Ferreri](https://github.com/Guilherme-Ferreti)
+- [Pedro Bernardinelli](https://github.com/PBernardinelli)
+- [Roberto Griel Filho](https://github.com/robertogriel)
+- [Yuri Silva](https://github.com/yurikgs)
