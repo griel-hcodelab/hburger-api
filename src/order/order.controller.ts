@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseIntPipe } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -11,9 +11,10 @@ export class OrderController {
 
   @UseGuards(LoginGuard)
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto,
-    @Login() login) {
-    return this.orderService.create(createOrderDto, login.user_id);
+  create(
+    @Body() createOrderDto: CreateOrderDto,
+    @Login('id') user_id) {
+    return this.orderService.create(createOrderDto, user_id);
   }
 
   @UseGuards(LoginGuard)
@@ -23,14 +24,24 @@ export class OrderController {
   }
 
   @UseGuards(LoginGuard)
+  @Get('/me')
+  findMe(@Login('id') user_id) {
+    return this.orderService.findMe(user_id);
+  }
+
+  @UseGuards(LoginGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id);
+  findOne(
+    @Param('id', ParseIntPipe) id: Number,
+    @Login('id') user_id) {
+    return this.orderService.findOne(id, user_id);
   }
 
   @UseGuards(LoginGuard)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateOrderDto: UpdateOrderDto) {
     return this.orderService.update(+id, updateOrderDto);
   }
 

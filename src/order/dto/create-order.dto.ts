@@ -10,5 +10,13 @@ export class CreateOrderDto {
     @IsString()
     observations?: string;
 
-    addressId: string;
+    @IsNumberString()
+    address_id: number;
+
+    @IsNumberString()
+    payment_situation_id: number;
+
+    product_id: string;
+
+    quantity: string;
 }

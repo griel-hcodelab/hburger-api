@@ -19,6 +19,7 @@ export class Orders1646357034866 implements MigrationInterface {
                 {
                     name: 'payment_situation_id',
                     type: 'int',
+                    default: 1,
                 },
                 {
                     name: 'total',
