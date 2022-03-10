@@ -85,22 +85,22 @@ export class IngredientsService {
     })
   }
 
-  async findByTypeName(name: string) {
+  async findByType(id: number) {
 
-    const ingredientType = await this.db.ingredientType.findFirst({
+    id = checkNumber(id)
+    const ingredientType = await this.db.ingredientType.findUnique({
       where: {
-        name
+        id
       }
-    })   // Seria Conveniente mudar o banco de dados deixar o nome dos ingredient_types como único, isso evitaria erro de duplicidade na hora de fazer a busca
+    })
 
     if(!ingredientType) {
       throw new NotFoundException("Ingredient Type Not Found")
     }
-    const ingredientTypeId: number = ingredientType.id
 
     const allByType = await this.db.ingredient.findMany({
       where: {
-        ingredient_type_id: ingredientTypeId
+        ingredient_type_id: id
       }
     })
 

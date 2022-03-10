@@ -24,9 +24,9 @@ export class IngredientsController {
     return this.ingredientsService.findOne(+id);
   }
 
-  @Get('/por-tipo/:name')
-  async findByTypeName(@Param('name') name: string) {
-    return this.ingredientsService.findByTypeName(name)
+  @Get('/by-type/:id')
+  async findByTypeName(@Param('id') id: string) {
+    return this.ingredientsService.findByType(+id)
   }
 
   @UseGuards(LoginGuard)
