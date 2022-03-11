@@ -23,6 +23,8 @@ export class OrderService {
     if (isNaN(person_id)) {
       throw new NotFoundException("Usuário não Encontrado!");
     }
+
+
     let priceTotal = [];
 
     data.address_id = checkNumber(data.address_id);
