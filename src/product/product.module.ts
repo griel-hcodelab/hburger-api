@@ -14,6 +14,9 @@ import { LoginModule } from 'src/login/login.module';
   ],
   providers: [
     ProductService
-  ]
+  ],
+  exports: [
+    ProductService
+  ],
 })
-export class ProductModule {}
+export class ProductModule { }
