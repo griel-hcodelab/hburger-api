@@ -18,9 +18,8 @@
     "postmigrate:up": "npm run prisma:update",
     "migrate:down": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert",
     "postmigrate:down": "npm run prisma:update",
-
-    "update":"git pull origin ",
-    "postupdate":"npm install && npx prisma generate"
+    "update": "git pull origin ",
+    "postupdate": "npm install && npx prisma generate"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.3.17",

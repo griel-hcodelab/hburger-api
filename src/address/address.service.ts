@@ -1,4 +1,6 @@
+import { HttpService } from '@nestjs/axios';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { lastValueFrom } from 'rxjs';
 import { LoginService } from 'src/login/login.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { checkNumber } from 'utils/checkNumber';
@@ -8,7 +10,7 @@ import { UpdateAddressDto } from './dto/update-address.dto';
 @Injectable()
 export class AddressService {
 
-  constructor(private db: PrismaService, private login: LoginService) { }
+  constructor(private db: PrismaService, private login: LoginService, private http: HttpService) { }
 
   async isValidPerson(address_id: number, person_id: number) {
 
@@ -79,6 +81,21 @@ export class AddressService {
       throw new NotFoundException("User not found.");
     }
 
+    if (!data.street) {
+      const result = await this.getZipcode(data.zipcode);
+
+      if (!result.logradouro) {
+        throw new NotFoundException("Este CEP é inválido")
+      }
+
+      data.street = result.logradouro;
+      data.district = result.bairro;
+      data.city = result.localidade;
+      data.state = result.uf;
+      data.country = 'Brasil';
+      
+    }
+
     return this.db.address.create({
       data: {
         person_id,
@@ -87,17 +104,32 @@ export class AddressService {
     });
   }
 
-  async update(id: number, user_id: number, dataUpdate: UpdateAddressDto) {
+  async update(id: number, user_id: number, data: UpdateAddressDto) {
 
     const person_id = await this.login.getPersonId(user_id);
 
     await this.isValidPerson(id, person_id);
 
+    if (!data.street) {
+      const result = await this.getZipcode(data.zipcode);
+
+      if (!result.logradouro) {
+        throw new NotFoundException("Este CEP é inválido")
+      }
+
+      data.street = result.logradouro;
+      data.district = result.bairro;
+      data.city = result.localidade;
+      data.state = result.uf;
+      data.country = 'Brasil';
+      
+    }
+
     return this.db.address.update({
       where: {
         id,
       },
-      data: dataUpdate,
+      data,
     });
   }
 
@@ -113,4 +145,18 @@ export class AddressService {
       },
     });
   }
+
+  async getZipcode(zipcode: string) {
+
+    zipcode = zipcode.replace(/[^\d]+/g, '').substring(0, 8);
+
+    const result = await lastValueFrom(
+        this.http.request({
+            method: 'GET',
+            url: `https://viacep.com.br/ws/${zipcode}/json/`,
+        }),
+    );
+
+    return result.data;
+}
 }
