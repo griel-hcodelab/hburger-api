@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { IngredientsService } from 'src/ingredients/ingredients.service';
 import { LoginService } from 'src/login/login.service';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -36,18 +36,16 @@ export class OrderService {
       let itens = aditionOrder[i].split(',');
       for (let i = 0; i < itens.length; i++) {
         resultItens = await this.ingredients.findOne(+itens[i]);
-        priceTotal.push(resultItens.price);
+        if (resultItens) {
+          priceTotal.push(resultItens.price);
+        }
       }
-      console.log(resultItens);
     }
-
 
     for (let i = 0; i <= products.length - 1; i++) {
       const resultProduct = await this.products.findOne(+products[i]);
       priceTotal.push(resultProduct.price);
     }
-
-    console.log(priceTotal);
     const totalPrice = priceTotal.reduce((total, atual) => {
       return parseFloat(total) + parseFloat(atual)
     });
