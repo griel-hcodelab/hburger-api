@@ -3,13 +3,15 @@ import { OrderService } from './order.service';
 import { OrderController } from './order.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { LoginModule } from 'src/login/login.module';
-import { OrderItensModule } from 'src/order-itens/order-itens.module';
+import { IngredientsModule } from 'src/ingredients/ingredients.module';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
     PrismaModule,
     LoginModule,
-    OrderItensModule,
+    IngredientsModule,
+    ProductModule,
   ],
   controllers: [OrderController],
   providers: [

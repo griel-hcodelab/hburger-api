@@ -27,6 +27,7 @@ export class Orders1646357034866 implements MigrationInterface {
                     precision: 10,
                     scale: 2,
                     unsigned: true,
+                    default: 0,
                 },
                 {
                     name: 'observations',
