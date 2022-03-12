@@ -7,6 +7,7 @@
 
 
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { IngredientTypesService } from 'src/ingredient-types/ingredient-types.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { checkNumber } from 'utils/checkNumber';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
@@ -16,7 +17,8 @@ import { UpdateIngredientDto } from './dto/update-ingredient.dto';
 export class IngredientsService {
 
   constructor(
-    private db: PrismaService
+    private db: PrismaService,
+    private ingredientType: IngredientTypesService
   ){}
 
   // Auxiliar:
@@ -63,6 +65,8 @@ export class IngredientsService {
   async create(data: CreateIngredientDto) {
     
     data = this.isValidData(data)
+
+    await this.ingredientType.findOne(data.ingredient_type_id);
    
     return this.db.ingredient.create({
       data
