@@ -52,8 +52,6 @@ export class OrderService {
       return parseFloat(total) + parseFloat(atual)
     });
 
-    console.log(totalPrice);
-
     for (let i = 0; i <= quantity.length - 1; i++) {
       quantity[i];
     }
