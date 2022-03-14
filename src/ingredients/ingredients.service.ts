@@ -63,7 +63,6 @@ export class IngredientsService {
   async create(data: CreateIngredientDto) {
     
     data = this.isValidData(data)
-    console.log(data)
    
     return this.db.ingredient.create({
       data

@@ -10,6 +10,7 @@ import { LoginModule } from 'src/login/login.module';
     LoginModule
   ],
   controllers: [IngredientsController],
-  providers: [IngredientsService]
+  providers: [IngredientsService],
+  exports: [IngredientsService]
 })
 export class IngredientsModule {}
