@@ -32,24 +32,28 @@ export class OrderController {
   @UseGuards(LoginGuard)
   @Get(':id')
   findOne(
-    @Param('id', ParseIntPipe) id: Number,
+    @Param('id', ParseIntPipe) order_id: Number,
     @Login('id') user_id) {
-    return this.orderService.findOne(id, user_id);
+    return this.orderService.findOne(order_id, user_id);
   }
 
   @UseGuards(LoginGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body('payment_situation_id') payment_situation_id: string,) {
+    @Body('payment_situation_id') payment_situation_id: string,
+    @Login('id') user_id) {
     const order_id = checkNumber(id);
     const payment_situation = checkNumber(payment_situation_id);
-    return this.orderService.updatePayment(order_id, payment_situation);
+    return this.orderService.updatePayment(order_id, payment_situation, user_id);
   }
 
   @UseGuards(LoginGuard)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.orderService.remove(+id);
+  remove(
+    @Param('id') id: string,
+    @Login('id') user_id) {
+    const order_id = checkNumber(id);
+    return this.orderService.remove(order_id, user_id);
   }
 }
