@@ -3,11 +3,16 @@ import { OrderItensService } from './order-itens.service';
 import { OrderItensController } from './order-itens.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
-import { LoginService } from 'src/login/login.service';
+import { IngredientsModule } from 'src/ingredients/ingredients.module';
+import { ProductModule } from 'src/product/product.module';
+import { OrderIgredientsModule } from 'src/order-igredients/order-igredients.module';
 
 @Module({
   imports: [
     PrismaModule,
+    IngredientsModule,
+    ProductModule,
+    OrderIgredientsModule,
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: process.env.JWT_SECRET,

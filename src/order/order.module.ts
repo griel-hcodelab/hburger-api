@@ -5,6 +5,7 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 import { LoginModule } from 'src/login/login.module';
 import { IngredientsModule } from 'src/ingredients/ingredients.module';
 import { ProductModule } from 'src/product/product.module';
+import { OrderItensModule } from 'src/order-itens/order-itens.module';
 
 @Module({
   imports: [
@@ -12,10 +13,10 @@ import { ProductModule } from 'src/product/product.module';
     LoginModule,
     IngredientsModule,
     ProductModule,
+    OrderItensModule,
   ],
   controllers: [OrderController],
-  providers: [
-    OrderService,
-  ]
+  providers: [OrderService],
+  exports: [OrderService],
 })
 export class OrderModule { }

@@ -1,1 +1,1622 @@
-{"_type":"export","__export_format":4,"__export_date":"2022-03-10T00:53:41.091Z","__export_source":"insomnia.desktop.app:v2022.1.0","resources":[{"_id":"req_25d45a19c72c4e1f8defbfe48677889c","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646418516944,"created":1646418485050,"url":"{{ _.baseUrl }}/login/teste","name":"TESTES","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646418485050,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","parentId":null,"modified":1646267622875,"created":1646267622875,"name":"HBurguer - Hcode Lab","description":"","scope":"collection","_type":"workspace"},{"_id":"req_9e0cf57c884c40d081fc944ffdb0d14f","parentId":"fld_4cee9a1c7a6547ffa015c506f09d251a","modified":1646691981403,"created":1646268903953,"url":"{{ _.baseUrl }}/login/password","name":"Change password","description":"","method":"PUT","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_117563678fe24894befda51cb9b3776e","name":"current_password","value":"123456","description":""},{"id":"pair_a0344c25504b450b9300151537a14e51","name":"new_password","value":"123456","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_1fc4bcf1f50547279953524d4d386cf9"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646343511400.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_4cee9a1c7a6547ffa015c506f09d251a","parentId":"fld_48fc00064f5743b1afe54a7cb5fc89e5","modified":1646681158078,"created":1646681158078,"name":"Password","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1646681158078,"_type":"request_group"},{"_id":"fld_48fc00064f5743b1afe54a7cb5fc89e5","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646269094200,"created":1646267760725,"name":"Auth","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1646267760725,"_type":"request_group"},{"_id":"req_7f196bf66bc34e1dae98c0da4d50fc37","parentId":"fld_4cee9a1c7a6547ffa015c506f09d251a","modified":1646681168835,"created":1646268669840,"url":"{{ _.baseUrl }}/login/forget","name":"Forget","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_b3fe46f9a12b4cc9ac1263510fbe0da6","name":"email","value":"rgrielfilho@gmail.com","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_534a0adf14114fa2be3ffa8ce8348516"}],"authentication":{},"metaSortKey":-1646343511350.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_a0f84b52eecd4376ac7c98c30ea92ca3","parentId":"fld_997e7e827c394e1ea790bce6f7fe4e69","modified":1646660630713,"created":1646267795795,"url":"{{ _.baseUrl }}/login","name":"Register","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_4bac8a3d60314f358e17f210c142f34f","name":"email","value":"rgrielfilho@gmail.com.br7","description":""},{"id":"pair_b003c34f83264eb98a9577f2cec9069d","name":"password","value":"123456","description":"","disabled":false},{"id":"pair_8bd207c835f34b2bab8942d7ba10978c","name":"name","value":"Roberto Griel Filho","description":""},{"id":"pair_925988c2a5a44894910c6e8180d75db6","name":"birthAt","value":"1989-08-31","description":"","disabled":false},{"id":"pair_46a0cea375754d51b3850309b307623c","name":"document","value":"00011122233","description":"","disabled":false},{"id":"pair_df8d72a5021b4870aad6c3c97e4b4737","name":"phone","value":"37991376936","description":"","disabled":false}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_1a0a892883234fd49d6a811fce7a9706"}],"authentication":{},"metaSortKey":-1646267795795,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_997e7e827c394e1ea790bce6f7fe4e69","parentId":"fld_48fc00064f5743b1afe54a7cb5fc89e5","modified":1646420187886,"created":1646420187886,"name":"Register","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1646420187886,"_type":"request_group"},{"_id":"req_01a68db8916c43c9abc87705c353101c","parentId":"fld_997e7e827c394e1ea790bce6f7fe4e69","modified":1646679977133,"created":1646268175779,"url":"{{ _.baseUrl }}/login/auth","name":"Login","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_b6598a3794204cd38a6375a93afcfc93","name":"email","value":"rgrielfilho@gmail.com","description":""},{"id":"pair_4b76fc99203d451789ee526cd6c114f0","name":"password","value":"12345678","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_d8bf10e0a9984bb58b06b9fe401044b5"}],"authentication":{},"metaSortKey":-1646267795745,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_61a147e59c1447ba9b3da6490182c9c2","parentId":"fld_997e7e827c394e1ea790bce6f7fe4e69","modified":1646692579911,"created":1646268214121,"url":"{{ _.baseUrl }}/login/me","name":"Me","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}","disabled":false},"metaSortKey":-1646267795695,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_9e4bf3b9d57f4ff29d02b628f0cf4dd6","parentId":"fld_997e7e827c394e1ea790bce6f7fe4e69","modified":1646692446620,"created":1646268457918,"url":"{{ _.baseUrl }}/login","name":"Update Me","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_8bd207c835f34b2bab8942d7ba10978c","name":"name","value":"Roberto Griel Filho","description":""},{"id":"pair_925988c2a5a44894910c6e8180d75db6","name":"birthAt","value":"1989-08-28","description":"","disabled":false},{"id":"pair_46a0cea375754d51b3850309b307623c","name":"document","value":"11122233344","description":"","disabled":false},{"id":"pair_df8d72a5021b4870aad6c3c97e4b4737","name":"phone","value":"","description":"","disabled":true}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_1a0a892883234fd49d6a811fce7a9706"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646267795645,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_9caab3ae514642e7af8b6d3194644aa0","parentId":"fld_997e7e827c394e1ea790bce6f7fe4e69","modified":1646660928815,"created":1646417144787,"url":"{{ _.baseUrl }}/login/45","name":"Update Other","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_8bd207c835f34b2bab8942d7ba10978c","name":"name","value":"Teste Bugado de Oliveira","description":""},{"id":"pair_925988c2a5a44894910c6e8180d75db6","name":"birthAt","value":"1890-02-28","description":"","disabled":true},{"id":"pair_46a0cea375754d51b3850309b307623c","name":"document","value":"","description":"","disabled":true},{"id":"pair_df8d72a5021b4870aad6c3c97e4b4737","name":"phone","value":"","description":"","disabled":true}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_1a0a892883234fd49d6a811fce7a9706"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646267795595,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_fdda361b338a4a3e8c65012853ad202d","parentId":"fld_997e7e827c394e1ea790bce6f7fe4e69","modified":1646669055482,"created":1646420326560,"url":"{{ _.baseUrl }}/login/delete/42","name":"Delete Other","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}","disabled":false},"metaSortKey":-1646223507632.25,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_048513ff60574c4ea0131329fd38655f","parentId":"fld_a7c9afc329e2483997f469d8e77b679b","modified":1646669181815,"created":1646268989120,"url":"{{ _.baseUrl }}/login/photo","name":"Get photo","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646267795695,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_a7c9afc329e2483997f469d8e77b679b","parentId":"fld_48fc00064f5743b1afe54a7cb5fc89e5","modified":1646419227256,"created":1646419227256,"name":"Photos","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1646419227256,"_type":"request_group"},{"_id":"req_fb95d305bc884a28a7a4897da185cdc1","parentId":"fld_a7c9afc329e2483997f469d8e77b679b","modified":1646669169205,"created":1646268272345,"url":"{{ _.baseUrl }}/login/photo","name":"Set photo","description":"","method":"PUT","body":{"mimeType":"multipart/form-data","params":[{"id":"pair_0ec1111787df4c3dbcfd58d13b7ce024","name":"file","value":"","description":"","type":"file","fileName":"D:\\Arquivos do Sistema\\Roberto Griel Filho\\Downloads\\image-lorem-face-792.jpg"}]},"parameters":[],"headers":[{"name":"Content-Type","value":"multipart/form-data","id":"pair_48ec65010029454583649e5c700257a3"}],"authentication":{"type":"bearer","token":"{{ _.token }}","disabled":false},"metaSortKey":-1646267795682.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_bb33df7f376e476eb760c7ca12bbe6fc","parentId":"fld_a7c9afc329e2483997f469d8e77b679b","modified":1646420148149,"created":1646419243519,"url":"{{ _.baseUrl }}/login/photo","name":"Delete photo","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646267795670,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_0e348d60020b423e819acf194bcb7797","parentId":"fld_a7c9afc329e2483997f469d8e77b679b","modified":1646669173308,"created":1646668073513,"url":"{{ _.baseUrl }}/login/photo/delete","name":"Delete Photo","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}","disabled":false},"metaSortKey":-1646267795670,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_868dd2f0db2a4bbe820960fe38cea309","parentId":"fld_48fc00064f5743b1afe54a7cb5fc89e5","modified":1646679963717,"created":1646268818742,"url":"{{ _.baseUrl }}/login/reset","name":"Reset password","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_656ab082883347f8bd9535ed1f922608","name":"password","value":"12345678","description":""}]},"parameters":[{"id":"pair_200e96b86bf34be79ca537aac8d7c95a","name":"token","value":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY0NjY3OTkwNiwiZXhwIjoxNjQ2NjgzNTA2fQ.SNMACsd3p2F3hMED5-2dIRqEuWsouWa792wik2oz888","description":""}],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_534a0adf14114fa2be3ffa8ce8348516"}],"authentication":{},"metaSortKey":-1646179219719.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_e3c3fce422a947128239e24d4ab7e4c1","parentId":"fld_271c9b5de36c41d1828851c450ea4e30","modified":1646697059737,"created":1646269121725,"url":"{{ _.baseUrl }}/addresses","name":"Create","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_c15539fb7cf84ce1a136b42baf9e026d","name":"street","value":"Rua de Testes","description":""},{"id":"pair_6d825d705c264d4e8e4a9e6c67a8f0d7","name":"number","value":"","description":"","disabled":true},{"id":"pair_4cb56e04048245f0aa190dc4365d71d1","name":"complement","value":"","description":"","disabled":true},{"id":"pair_b48e21280c9f4dd6a094f25b07889dd8","name":"district","value":"Centro","description":""},{"id":"pair_be322733100f440aa13bf62f8b32956a","name":"city","value":"Nova Serrana","description":""},{"id":"pair_d4b55dac3e14464699856d60177ad1d0","name":"state","value":"Minas Gerais","description":""},{"id":"pair_03fc54f98ea24e568d9530437e5092eb","name":"country","value":"Brasil","description":""},{"id":"pair_19e79f9f7f144ffaaf5726d73f5bef08","name":"zipcode","value":"35524182","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_0d221ee540d7496bbd2bb397624f06b6"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646269121725,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_271c9b5de36c41d1828851c450ea4e30","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646269804737,"created":1646269106720,"name":"Addresses","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1646267760675,"_type":"request_group"},{"_id":"req_1585b7478c13428e9dfe42ec28015aa8","parentId":"fld_271c9b5de36c41d1828851c450ea4e30","modified":1646697050122,"created":1646269168486,"url":"{{ _.baseUrl }}/addresses/4","name":"Get","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646268458760,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_eede859eff6b416b9a2d4c598699df1e","parentId":"fld_271c9b5de36c41d1828851c450ea4e30","modified":1646697052505,"created":1646269385268,"url":"{{ _.baseUrl }}/addresses","name":"List","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646268127277.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_e000dca6a8ae46899e29c4d5b92ca65b","parentId":"fld_271c9b5de36c41d1828851c450ea4e30","modified":1646697058899,"created":1646269476241,"url":"{{ _.baseUrl }}/addresses/5","name":"Update","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_c15539fb7cf84ce1a136b42baf9e026d","name":"street","value":"Rua de Testes Bugados","description":""},{"id":"pair_6d825d705c264d4e8e4a9e6c67a8f0d7","name":"number","value":"","description":"","disabled":true},{"id":"pair_4cb56e04048245f0aa190dc4365d71d1","name":"complement","value":"","description":"","disabled":true},{"id":"pair_b48e21280c9f4dd6a094f25b07889dd8","name":"district","value":"","description":""},{"id":"pair_be322733100f440aa13bf62f8b32956a","name":"city","value":"","description":""},{"id":"pair_d4b55dac3e14464699856d60177ad1d0","name":"state","value":"","description":""},{"id":"pair_03fc54f98ea24e568d9530437e5092eb","name":"country","value":"","description":""},{"id":"pair_19e79f9f7f144ffaaf5726d73f5bef08","name":"zipcode","value":"","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_0d221ee540d7496bbd2bb397624f06b6"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646268127252.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_cb42754d6708413f89291cba88f9f0fd","parentId":"fld_271c9b5de36c41d1828851c450ea4e30","modified":1646269862573,"created":1646269597560,"url":"{{ _.baseUrl }}/addresses/1","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646268127227.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_05fca2afe494490cb6c93bad6b1277b4","parentId":"fld_01d901d0c86040a6b2f39cc363880790","modified":1646269712340,"created":1646269669317,"url":"{{ _.baseUrl }}/payment-situations","name":"List","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1645659330085,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_01d901d0c86040a6b2f39cc363880790","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646269669312,"created":1646269669312,"name":"Payment Situations","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1000000000,"_type":"request_group"},{"_id":"req_ca4242e9025a4c55b04a294b387ad5a7","parentId":"fld_01d901d0c86040a6b2f39cc363880790","modified":1646269719806,"created":1646269669319,"url":"{{ _.baseUrl }}/payment-situations/1","name":"Get","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1645659330060,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_4dc5b74fe6794cf59649e9bf688050ba","parentId":"fld_01d901d0c86040a6b2f39cc363880790","modified":1646692703173,"created":1646269669315,"url":"{{ _.baseUrl }}/payment-situations","name":"Create","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_0afd54d351c44345bfa57b8fad340ddf","name":"name","value":"Pagamento Confirmado","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_39c9e943d1364df0a6e1784e46cab20b"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1645659330035,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_a2d3320a265e4619bf8f38d9bc15683b","parentId":"fld_01d901d0c86040a6b2f39cc363880790","modified":1646692735039,"created":1646269669320,"url":"{{ _.baseUrl }}/payment-situations/4","name":"Update","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_0afd54d351c44345bfa57b8fad340ddf","name":"name","value":"Aguardando Pagamento por PIX","description":"","disabled":false}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_39c9e943d1364df0a6e1784e46cab20b"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1645653574900.875,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_8d49a1b6fc7542daac5e6fdad0828044","parentId":"fld_01d901d0c86040a6b2f39cc363880790","modified":1646692748839,"created":1646269669322,"url":"{{ _.baseUrl }}/payment-situations/4","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1645650697333.8125,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_432cd4df51d34f339d49db7e4cbf32a4","parentId":"fld_fd6be39aa58f4120bf03059b3a2faa54","modified":1646873385182,"created":1646829056910,"url":"{{ _.baseUrl }}/products/ingredients/1","name":"List Ingredients by Product","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646549441838.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_fd6be39aa58f4120bf03059b3a2faa54","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646269797270,"created":1646269793292,"name":"Products","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-999999950,"_type":"request_group"},{"_id":"req_3f5c7bdc3b0d4e138e84e653fbbbe430","parentId":"fld_fd6be39aa58f4120bf03059b3a2faa54","modified":1646832077393,"created":1646269957179,"url":"{{ _.baseUrl }}/products","name":"List","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646269957179,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_0811bd9a5f7144b2b885dcb89dba19ee","parentId":"fld_fd6be39aa58f4120bf03059b3a2faa54","modified":1646830727771,"created":1646271236917,"url":"{{ _.baseUrl }}/products/3","name":"Get","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646269957129,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_aed9cdcd414447a486feaddf5d14b8da","parentId":"fld_fd6be39aa58f4120bf03059b3a2faa54","modified":1646867953869,"created":1646271255989,"url":"{{ _.baseUrl }}/products","name":"Create","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_8a2d380a39bc43de8c7432f2d8d9713d","name":"name","value":"HBurger Hyper M","description":""},{"id":"pair_ba8b069bccff4518bef0b84630e7b79b","name":"description","value":"Pão, Hamburger, Ovo, Mussarela, Presunto, Alface, Milho, Batata Palha, Bacon e Catupiry","description":"","disabled":false},{"id":"pair_318ad9a3995e4537a236f6cf5a21eeaf","name":"price","value":"30.00","description":"","disabled":false},{"id":"pair_12aa782657024eeeb9eb7f7831c88a2f","name":"ingredients","value":"2,6,10","description":"","disabled":false}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_06a8c65c09b2484b810eee15b07588fa"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646269957079,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_2e209187d2ba403c91553be1f84eefbc","parentId":"fld_fd6be39aa58f4120bf03059b3a2faa54","modified":1646873375190,"created":1646271306107,"url":"{{ _.baseUrl }}/products/1","name":"Update","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_8a2d380a39bc43de8c7432f2d8d9713d","name":"name","value":"Big X2","description":"","disabled":true},{"id":"pair_ba8b069bccff4518bef0b84630e7b79b","name":"description","value":"","description":"","disabled":true},{"id":"pair_318ad9a3995e4537a236f6cf5a21eeaf","name":"price","value":"28.01","description":"","disabled":true},{"id":"pair_a3cf84129b2e4c5d93dcebdaecf4f820","name":"ingredients","value":"Excluir","description":"","disabled":false},{"id":"pair_3e88446390364db08cc8a3fb362ba4a1","name":"","value":"","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_06a8c65c09b2484b810eee15b07588fa"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646269539402,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f4e4c6f92fda45d983cf1276ac6d3579","parentId":"fld_fd6be39aa58f4120bf03059b3a2faa54","modified":1646866810534,"created":1646271369861,"url":"{{ _.baseUrl }}/products/19","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646269539352,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_5c0414a8447344ad8e155b0721ac4dd1","parentId":"fld_4bd951ba91bd45da9d7276593781ee91","modified":1646696038208,"created":1646346192424,"url":"{{ _.baseUrl }}/ingredients/types","name":"List all","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646347270432,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_4bd951ba91bd45da9d7276593781ee91","parentId":"fld_908b2bf1f14c47a4a5dcb4754f92e270","modified":1646347066960,"created":1646347066960,"name":"Types","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1646347066960,"_type":"request_group"},{"_id":"fld_908b2bf1f14c47a4a5dcb4754f92e270","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646828822953,"created":1646346090149,"name":"Ingredients","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-999999900,"_type":"request_group"},{"_id":"req_9333ff66f205425cbd2249b07027aa9f","parentId":"fld_4bd951ba91bd45da9d7276593781ee91","modified":1646696048046,"created":1646346241055,"url":"{{ _.baseUrl }}/ingredients/types/3","name":"List types","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646347270407,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_6f6a1917e27f4c7ea31f3a67912e4849","parentId":"fld_4bd951ba91bd45da9d7276593781ee91","modified":1646842535152,"created":1646347270382,"url":"{{ _.baseUrl }}/ingredients/types","name":"Create","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_aed0938071414f7aaa9ca3e17da1d8b8","name":"name","value":"Molhos","description":""},{"id":"pair_ef9b2322f7f44d98a3ad92d64b9e8dd7","name":"description","value":"Molho para seu lanche","description":"","disabled":false},{"id":"pair_f3d0e7a717d2403bbe2c49ed7464c827","name":"repeatable","value":"1","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_886089253e39487c91c0d58791044c0c"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646347270382,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_5e70c80d63244da4a2d75bae24676031","parentId":"fld_4bd951ba91bd45da9d7276593781ee91","modified":1646835158730,"created":1646347339914,"url":"{{ _.baseUrl }}/ingredients/types/3","name":"Update","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_aed0938071414f7aaa9ca3e17da1d8b8","name":"name","value":"Carnes Bovinas","description":""},{"id":"pair_ef9b2322f7f44d98a3ad92d64b9e8dd7","name":"description","value":"Escolha o molho para deixar seu HBurger mais suculento","description":""},{"id":"pair_f3d0e7a717d2403bbe2c49ed7464c827","name":"repeatable","value":"1","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_886089253e39487c91c0d58791044c0c"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646346703233,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_90f17fd6fc464014b115acca97eb4904","parentId":"fld_4bd951ba91bd45da9d7276593781ee91","modified":1646696608890,"created":1646347399722,"url":"{{ _.baseUrl }}/ingredients/types/4","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646346419658.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_5a7241fa60914aa1b1107d49c5221e6c","parentId":"fld_908b2bf1f14c47a4a5dcb4754f92e270","modified":1646346146575,"created":1646346136084,"url":"{{ _.baseUrl }}/ingredients","name":"List all","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646346136084,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f630e029b1c74a028a7427176a4807d3","parentId":"fld_908b2bf1f14c47a4a5dcb4754f92e270","modified":1646783235153,"created":1646696120561,"url":"{{ _.baseUrl }}/ingredients/por-tipo/carne","name":"List name","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1646344823742.25,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f3a21703fb7f4425b648a7bf67954c61","parentId":"fld_908b2bf1f14c47a4a5dcb4754f92e270","modified":1646696625797,"created":1646347516765,"url":"{{ _.baseUrl }}/ingredients","name":"Create","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_7fd9bb38291a4c62963c576caa0f4185","name":"name","value":"Carne de Frango 250g","description":""},{"id":"pair_a493656a655b4d4fa65f1da299149953","name":"description","value":"Coma frango","description":""},{"id":"pair_16219208eef549c0be5d1abdaf99639c","name":"price","value":"25,50","description":"","disabled":false},{"id":"pair_2390d453329b4313b417455b1645a08e","name":"ingredient_type_id","value":"1","description":""},{"id":"pair_b0949f70bc6e41f8ba142ab1cf9af40a","name":"","value":"","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_69a643b974cb4327a61cfc54de389af0"}],"authentication":{"type":"bearer","token":"{{ _.token }}","disabled":false},"metaSortKey":-1646311670333.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_02934a4f758d47e488bf419aeadbc791","parentId":"fld_908b2bf1f14c47a4a5dcb4754f92e270","modified":1646696615378,"created":1646347591464,"url":"{{ _.baseUrl }}/ingredients/14","name":"Update","description":"","method":"PATCH","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_7fd9bb38291a4c62963c576caa0f4185","name":"name","value":"Carne de Frango 250g","description":""},{"id":"pair_a493656a655b4d4fa65f1da299149953","name":"description","value":"Carne de frango com 250g","description":""},{"id":"pair_16219208eef549c0be5d1abdaf99639c","name":"price","value":"3,50","description":""},{"id":"pair_2390d453329b4313b417455b1645a08e","name":"ingredient_type_id","value":"1","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_69a643b974cb4327a61cfc54de389af0"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646309208522.75,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_99a823bfe703429d9e6b003f21c8c543","parentId":"fld_908b2bf1f14c47a4a5dcb4754f92e270","modified":1646696612561,"created":1646347608315,"url":"{{ _.baseUrl }}/ingredients/14","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646307977617.375,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f4cc1000783044b98756ac5afc6d4c2d","parentId":"fld_5a3affacfb93453ba3d2a022bc63e2c1","modified":1646696828144,"created":1646347831278,"url":"{{ _.baseUrl }}/orders","name":"List","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646347710174,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_5a3affacfb93453ba3d2a022bc63e2c1","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646347681096,"created":1646347677869,"name":"Orders","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-999999850,"_type":"request_group"},{"_id":"req_f4c9996cc9104ed583cc5540857e11fa","parentId":"fld_5a3affacfb93453ba3d2a022bc63e2c1","modified":1646347821892,"created":1646347710124,"url":"{{ _.baseUrl }}/orders/me","name":"List for user","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646347710124,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_091eda72a2384545a66d1ea33c4c22ba","parentId":"fld_5a3affacfb93453ba3d2a022bc63e2c1","modified":1646350020598,"created":1646347854339,"url":"{{ _.baseUrl }}/orders","name":"Create","description":"","method":"POST","body":{"mimeType":"application/x-www-form-urlencoded","params":[{"id":"pair_eb1075afb66848b791b6e2ddd1b0e5a7","name":"address_id","value":"","description":""},{"id":"pair_ad38477fd8a844da9e7eccf81c4380b1","name":"payment_situation_id","value":"1","description":""},{"id":"pair_03c491d4f1714786abe0a99ed9e8acce","name":"products","value":"1,4,5","description":""},{"id":"pair_b7697a5e14624d9da052a57e5bc248a7","name":"quantities","value":"1,2,1","description":""},{"id":"pair_9807ee2a5c7a44cdabc2821f075745bc","name":"observations","value":"Sem maionese","description":""}]},"parameters":[],"headers":[{"name":"Content-Type","value":"application/x-www-form-urlencoded","id":"pair_d7dca004bda74d5f8155904288f4fb5d"}],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646347710074,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_1b3482c0db36407aacf3ddd85ff47f18","parentId":"fld_5a3affacfb93453ba3d2a022bc63e2c1","modified":1646348038331,"created":1646348032542,"url":"{{ _.baseUrl }}/orders/1","name":"Delete","description":"","method":"DELETE","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"{{ _.token }}"},"metaSortKey":-1646347490253,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"env_3b9c2d1e70ff6bace048495def8e6ee043841ba6","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646432904800,"created":1646267622881,"name":"Base Environment","data":{"baseUrl":"http://localhost:3000","token":"{% response 'body', 'req_01a68db8916c43c9abc87705c353101c', 'b64::JC50b2tlbg==::46b', 'never', 60 %}"},"dataPropertyOrder":{"&":["baseUrl","token"]},"color":null,"isPrivate":false,"metaSortKey":1646267622881,"_type":"environment"},{"_id":"jar_3b9c2d1e70ff6bace048495def8e6ee043841ba6","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646267622882,"created":1646267622882,"name":"Default Jar","cookies":[],"_type":"cookie_jar"},{"_id":"spc_b75236dbb4614edb83115d1de767009f","parentId":"wrk_93f88d1a8712459e8d5d419fa3b1e3f2","modified":1646267622876,"created":1646267622876,"fileName":"HBurguer - Hcode Lab","contents":"","contentType":"yaml","_type":"api_spec"}]}
+_type: export
+__export_format: 4
+__export_date: 2022-03-15T02:00:15.959Z
+__export_source: insomnia.desktop.app:v2021.7.2
+resources:
+  - _id: req_25d45a19c72c4e1f8defbfe48677889c
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646418516944
+    created: 1646418485050
+    url: "{{ _.baseUrl }}/login/teste"
+    name: TESTES
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646418485050
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    parentId: null
+    modified: 1646267622875
+    created: 1646267622875
+    name: HBurguer - Hcode Lab
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_9e0cf57c884c40d081fc944ffdb0d14f
+    parentId: fld_4cee9a1c7a6547ffa015c506f09d251a
+    modified: 1647017289123
+    created: 1646268903953
+    url: "{{ _.baseUrl }}/login/password"
+    name: Change password
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_117563678fe24894befda51cb9b3776e
+          name: current_password
+          value: "123456"
+          description: ""
+        - id: pair_a0344c25504b450b9300151537a14e51
+          name: new_password
+          value: "123456"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_1fc4bcf1f50547279953524d4d386cf9
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646343511400.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_4cee9a1c7a6547ffa015c506f09d251a
+    parentId: fld_48fc00064f5743b1afe54a7cb5fc89e5
+    modified: 1646681158078
+    created: 1646681158078
+    name: Password
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1646681158078
+    _type: request_group
+  - _id: fld_48fc00064f5743b1afe54a7cb5fc89e5
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646269094200
+    created: 1646267760725
+    name: Auth
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1646267760725
+    _type: request_group
+  - _id: req_7f196bf66bc34e1dae98c0da4d50fc37
+    parentId: fld_4cee9a1c7a6547ffa015c506f09d251a
+    modified: 1646681168835
+    created: 1646268669840
+    url: "{{ _.baseUrl }}/login/forget"
+    name: Forget
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_b3fe46f9a12b4cc9ac1263510fbe0da6
+          name: email
+          value: rgrielfilho@gmail.com
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_534a0adf14114fa2be3ffa8ce8348516
+    authentication: {}
+    metaSortKey: -1646343511350.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a0f84b52eecd4376ac7c98c30ea92ca3
+    parentId: fld_997e7e827c394e1ea790bce6f7fe4e69
+    modified: 1647017264226
+    created: 1646267795795
+    url: "{{ _.baseUrl }}/login"
+    name: Register
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_4bac8a3d60314f358e17f210c142f34f
+          name: email
+          value: davimatana.promoter@gmail.com
+          description: ""
+        - id: pair_b003c34f83264eb98a9577f2cec9069d
+          name: password
+          value: "123456"
+          description: ""
+          disabled: false
+        - id: pair_8bd207c835f34b2bab8942d7ba10978c
+          name: name
+          value: Davi Matana Promoter
+          description: ""
+        - id: pair_925988c2a5a44894910c6e8180d75db6
+          name: birthAt
+          value: 1986-01-16
+          description: ""
+          disabled: false
+        - id: pair_46a0cea375754d51b3850309b307623c
+          name: document
+          value: "00011122233"
+          description: ""
+          disabled: false
+        - id: pair_df8d72a5021b4870aad6c3c97e4b4737
+          name: phone
+          value: "37991376936"
+          description: ""
+          disabled: false
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_1a0a892883234fd49d6a811fce7a9706
+    authentication: {}
+    metaSortKey: -1646267795795
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_997e7e827c394e1ea790bce6f7fe4e69
+    parentId: fld_48fc00064f5743b1afe54a7cb5fc89e5
+    modified: 1646420187886
+    created: 1646420187886
+    name: Register
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1646420187886
+    _type: request_group
+  - _id: req_01a68db8916c43c9abc87705c353101c
+    parentId: fld_997e7e827c394e1ea790bce6f7fe4e69
+    modified: 1647017268639
+    created: 1646268175779
+    url: "{{ _.baseUrl }}/login/auth"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_b6598a3794204cd38a6375a93afcfc93
+          name: email
+          value: matananh@gmail.com
+          description: ""
+        - id: pair_4b76fc99203d451789ee526cd6c114f0
+          name: password
+          value: "123456"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_d8bf10e0a9984bb58b06b9fe401044b5
+    authentication: {}
+    metaSortKey: -1646267795745
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_61a147e59c1447ba9b3da6490182c9c2
+    parentId: fld_997e7e827c394e1ea790bce6f7fe4e69
+    modified: 1647017271869
+    created: 1646268214121
+    url: "{{ _.baseUrl }}/login/me"
+    name: Me
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1646267795695
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9e4bf3b9d57f4ff29d02b628f0cf4dd6
+    parentId: fld_997e7e827c394e1ea790bce6f7fe4e69
+    modified: 1647017280657
+    created: 1646268457918
+    url: "{{ _.baseUrl }}/login"
+    name: Update Me
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_8bd207c835f34b2bab8942d7ba10978c
+          name: name
+          value: Roberto Griel Filho
+          description: ""
+        - id: pair_925988c2a5a44894910c6e8180d75db6
+          name: birthAt
+          value: 1989-08-28
+          description: ""
+          disabled: false
+        - id: pair_46a0cea375754d51b3850309b307623c
+          name: document
+          value: "11122233344"
+          description: ""
+          disabled: false
+        - id: pair_df8d72a5021b4870aad6c3c97e4b4737
+          name: phone
+          value: ""
+          description: ""
+          disabled: true
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_1a0a892883234fd49d6a811fce7a9706
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646267795645
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9caab3ae514642e7af8b6d3194644aa0
+    parentId: fld_997e7e827c394e1ea790bce6f7fe4e69
+    modified: 1647017281857
+    created: 1646417144787
+    url: "{{ _.baseUrl }}/login/45"
+    name: Update Other
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_8bd207c835f34b2bab8942d7ba10978c
+          name: name
+          value: Teste Bugado de Oliveira
+          description: ""
+        - id: pair_925988c2a5a44894910c6e8180d75db6
+          name: birthAt
+          value: 1890-02-28
+          description: ""
+          disabled: true
+        - id: pair_46a0cea375754d51b3850309b307623c
+          name: document
+          value: ""
+          description: ""
+          disabled: true
+        - id: pair_df8d72a5021b4870aad6c3c97e4b4737
+          name: phone
+          value: ""
+          description: ""
+          disabled: true
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_1a0a892883234fd49d6a811fce7a9706
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646267795595
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fdda361b338a4a3e8c65012853ad202d
+    parentId: fld_997e7e827c394e1ea790bce6f7fe4e69
+    modified: 1647017286766
+    created: 1646420326560
+    url: "{{ _.baseUrl }}/login/delete/42"
+    name: Delete Other
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1646223507632.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_048513ff60574c4ea0131329fd38655f
+    parentId: fld_a7c9afc329e2483997f469d8e77b679b
+    modified: 1647017331655
+    created: 1646268989120
+    url: "{{ _.baseUrl }}/login/photo"
+    name: Get photo
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646267795695
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_a7c9afc329e2483997f469d8e77b679b
+    parentId: fld_48fc00064f5743b1afe54a7cb5fc89e5
+    modified: 1646419227256
+    created: 1646419227256
+    name: Photos
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1646419227256
+    _type: request_group
+  - _id: req_fb95d305bc884a28a7a4897da185cdc1
+    parentId: fld_a7c9afc329e2483997f469d8e77b679b
+    modified: 1647017326751
+    created: 1646268272345
+    url: "{{ _.baseUrl }}/login/photo"
+    name: Set photo
+    description: ""
+    method: PUT
+    body:
+      mimeType: multipart/form-data
+      params:
+        - id: pair_0ec1111787df4c3dbcfd58d13b7ce024
+          name: file
+          value: ""
+          description: ""
+          type: file
+          fileName: /Users/mac/web/hcode/HcodeLab/NodeJS+NestJS/hburger-api/storage/photos/1646866920461-61e65493ba8f3d8adc1af2d1184c8021.jpg
+          multiline: null
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+        id: pair_48ec65010029454583649e5c700257a3
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1646267795682.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_bb33df7f376e476eb760c7ca12bbe6fc
+    parentId: fld_a7c9afc329e2483997f469d8e77b679b
+    modified: 1646420148149
+    created: 1646419243519
+    url: "{{ _.baseUrl }}/login/photo"
+    name: Delete photo
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646267795670
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0e348d60020b423e819acf194bcb7797
+    parentId: fld_a7c9afc329e2483997f469d8e77b679b
+    modified: 1646669173308
+    created: 1646668073513
+    url: "{{ _.baseUrl }}/login/photo/delete"
+    name: Delete Photo
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1646267795670
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_868dd2f0db2a4bbe820960fe38cea309
+    parentId: fld_48fc00064f5743b1afe54a7cb5fc89e5
+    modified: 1646679963717
+    created: 1646268818742
+    url: "{{ _.baseUrl }}/login/reset"
+    name: Reset password
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_656ab082883347f8bd9535ed1f922608
+          name: password
+          value: "12345678"
+          description: ""
+    parameters:
+      - id: pair_200e96b86bf34be79ca537aac8d7c95a
+        name: token
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY0NjY3OTkwNiwiZXhwIjoxNjQ2NjgzNTA2fQ.SNMACsd3p2F3hMED5-2dIRqEuWsouWa792wik2oz888
+        description: ""
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_534a0adf14114fa2be3ffa8ce8348516
+    authentication: {}
+    metaSortKey: -1646179219719.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e3c3fce422a947128239e24d4ab7e4c1
+    parentId: fld_271c9b5de36c41d1828851c450ea4e30
+    modified: 1647017367403
+    created: 1646269121725
+    url: "{{ _.baseUrl }}/addresses"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_c15539fb7cf84ce1a136b42baf9e026d
+          name: street
+          value: Rua de Testes
+          description: ""
+        - id: pair_6d825d705c264d4e8e4a9e6c67a8f0d7
+          name: number
+          value: 11a
+          description: ""
+          disabled: false
+        - id: pair_4cb56e04048245f0aa190dc4365d71d1
+          name: complement
+          value: ""
+          description: ""
+          disabled: true
+        - id: pair_b48e21280c9f4dd6a094f25b07889dd8
+          name: district
+          value: Centro
+          description: ""
+        - id: pair_be322733100f440aa13bf62f8b32956a
+          name: city
+          value: Novo
+          description: ""
+        - id: pair_d4b55dac3e14464699856d60177ad1d0
+          name: state
+          value: RS
+          description: ""
+        - id: pair_03fc54f98ea24e568d9530437e5092eb
+          name: country
+          value: Brasil
+          description: ""
+        - id: pair_19e79f9f7f144ffaaf5726d73f5bef08
+          name: zipcode
+          value: "35524182"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_0d221ee540d7496bbd2bb397624f06b6
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646269121725
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_271c9b5de36c41d1828851c450ea4e30
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646269804737
+    created: 1646269106720
+    name: Addresses
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1646267760675
+    _type: request_group
+  - _id: req_1585b7478c13428e9dfe42ec28015aa8
+    parentId: fld_271c9b5de36c41d1828851c450ea4e30
+    modified: 1646949953234
+    created: 1646269168486
+    url: "{{ _.baseUrl }}/addresses/4"
+    name: Get
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646268458760
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_eede859eff6b416b9a2d4c598699df1e
+    parentId: fld_271c9b5de36c41d1828851c450ea4e30
+    modified: 1647042531994
+    created: 1646269385268
+    url: "{{ _.baseUrl }}/addresses"
+    name: List
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646268127277.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e000dca6a8ae46899e29c4d5b92ca65b
+    parentId: fld_271c9b5de36c41d1828851c450ea4e30
+    modified: 1646697058899
+    created: 1646269476241
+    url: "{{ _.baseUrl }}/addresses/5"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_c15539fb7cf84ce1a136b42baf9e026d
+          name: street
+          value: Rua de Testes Bugados
+          description: ""
+        - id: pair_6d825d705c264d4e8e4a9e6c67a8f0d7
+          name: number
+          value: ""
+          description: ""
+          disabled: true
+        - id: pair_4cb56e04048245f0aa190dc4365d71d1
+          name: complement
+          value: ""
+          description: ""
+          disabled: true
+        - id: pair_b48e21280c9f4dd6a094f25b07889dd8
+          name: district
+          value: ""
+          description: ""
+        - id: pair_be322733100f440aa13bf62f8b32956a
+          name: city
+          value: ""
+          description: ""
+        - id: pair_d4b55dac3e14464699856d60177ad1d0
+          name: state
+          value: ""
+          description: ""
+        - id: pair_03fc54f98ea24e568d9530437e5092eb
+          name: country
+          value: ""
+          description: ""
+        - id: pair_19e79f9f7f144ffaaf5726d73f5bef08
+          name: zipcode
+          value: ""
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_0d221ee540d7496bbd2bb397624f06b6
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646268127252.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cb42754d6708413f89291cba88f9f0fd
+    parentId: fld_271c9b5de36c41d1828851c450ea4e30
+    modified: 1646269862573
+    created: 1646269597560
+    url: "{{ _.baseUrl }}/addresses/1"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646268127227.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_05fca2afe494490cb6c93bad6b1277b4
+    parentId: fld_01d901d0c86040a6b2f39cc363880790
+    modified: 1646269712340
+    created: 1646269669317
+    url: "{{ _.baseUrl }}/payment-situations"
+    name: List
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1645659330085
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_01d901d0c86040a6b2f39cc363880790
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646269669312
+    created: 1646269669312
+    name: Payment Situations
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1000000000
+    _type: request_group
+  - _id: req_ca4242e9025a4c55b04a294b387ad5a7
+    parentId: fld_01d901d0c86040a6b2f39cc363880790
+    modified: 1646269719806
+    created: 1646269669319
+    url: "{{ _.baseUrl }}/payment-situations/1"
+    name: Get
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1645659330060
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4dc5b74fe6794cf59649e9bf688050ba
+    parentId: fld_01d901d0c86040a6b2f39cc363880790
+    modified: 1647043758069
+    created: 1646269669315
+    url: "{{ _.baseUrl }}/payment-situations"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_0afd54d351c44345bfa57b8fad340ddf
+          name: name
+          value: Pagamento Recusado
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_39c9e943d1364df0a6e1784e46cab20b
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1645659330035
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a2d3320a265e4619bf8f38d9bc15683b
+    parentId: fld_01d901d0c86040a6b2f39cc363880790
+    modified: 1646692735039
+    created: 1646269669320
+    url: "{{ _.baseUrl }}/payment-situations/4"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_0afd54d351c44345bfa57b8fad340ddf
+          name: name
+          value: Aguardando Pagamento por PIX
+          description: ""
+          disabled: false
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_39c9e943d1364df0a6e1784e46cab20b
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1645653574900.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8d49a1b6fc7542daac5e6fdad0828044
+    parentId: fld_01d901d0c86040a6b2f39cc363880790
+    modified: 1646692748839
+    created: 1646269669322
+    url: "{{ _.baseUrl }}/payment-situations/4"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1645650697333.8125
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5c0414a8447344ad8e155b0721ac4dd1
+    parentId: fld_4bd951ba91bd45da9d7276593781ee91
+    modified: 1646696038208
+    created: 1646346192424
+    url: "{{ _.baseUrl }}/ingredients/types"
+    name: List all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646347270432
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_4bd951ba91bd45da9d7276593781ee91
+    parentId: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    modified: 1646347066960
+    created: 1646347066960
+    name: Types
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1646347066960
+    _type: request_group
+  - _id: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646828822953
+    created: 1646346090149
+    name: Ingredients
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -999999900
+    _type: request_group
+  - _id: req_9333ff66f205425cbd2249b07027aa9f
+    parentId: fld_4bd951ba91bd45da9d7276593781ee91
+    modified: 1646696048046
+    created: 1646346241055
+    url: "{{ _.baseUrl }}/ingredients/types/3"
+    name: List types
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646347270407
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6f6a1917e27f4c7ea31f3a67912e4849
+    parentId: fld_4bd951ba91bd45da9d7276593781ee91
+    modified: 1647044023094
+    created: 1646347270382
+    url: "{{ _.baseUrl }}/ingredients/types"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_aed0938071414f7aaa9ca3e17da1d8b8
+          name: name
+          value: Queijos
+          description: ""
+        - id: pair_ef9b2322f7f44d98a3ad92d64b9e8dd7
+          name: description
+          value: Tipos de Queijos
+          description: ""
+          disabled: false
+        - id: pair_f3d0e7a717d2403bbe2c49ed7464c827
+          name: repeatable
+          value: "1"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_886089253e39487c91c0d58791044c0c
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347270382
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5e70c80d63244da4a2d75bae24676031
+    parentId: fld_4bd951ba91bd45da9d7276593781ee91
+    modified: 1647307516143
+    created: 1646347339914
+    url: "{{ _.baseUrl }}/ingredients/types/2"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_aed0938071414f7aaa9ca3e17da1d8b8
+          name: name
+          value: Carnes Bovinas
+          description: ""
+          disabled: true
+        - id: pair_ef9b2322f7f44d98a3ad92d64b9e8dd7
+          name: description
+          value: Escolha o molho para deixar seu HBurger mais suculento
+          description: ""
+          disabled: true
+        - id: pair_f3d0e7a717d2403bbe2c49ed7464c827
+          name: repeatable
+          value: "1"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_886089253e39487c91c0d58791044c0c
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646346703233
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_90f17fd6fc464014b115acca97eb4904
+    parentId: fld_4bd951ba91bd45da9d7276593781ee91
+    modified: 1646696608890
+    created: 1646347399722
+    url: "{{ _.baseUrl }}/ingredients/types/4"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646346419658.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5a7241fa60914aa1b1107d49c5221e6c
+    parentId: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    modified: 1646346146575
+    created: 1646346136084
+    url: "{{ _.baseUrl }}/ingredients"
+    name: List all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646346136084
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f630e029b1c74a028a7427176a4807d3
+    parentId: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    modified: 1646783235153
+    created: 1646696120561
+    url: "{{ _.baseUrl }}/ingredients/por-tipo/carne"
+    name: List name
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646344823742.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f3a21703fb7f4425b648a7bf67954c61
+    parentId: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    modified: 1647044338604
+    created: 1646347516765
+    url: "{{ _.baseUrl }}/ingredients"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_7fd9bb38291a4c62963c576caa0f4185
+          name: name
+          value: Suiço
+          description: ""
+        - id: pair_a493656a655b4d4fa65f1da299149953
+          name: description
+          value: Suiço
+          description: ""
+        - id: pair_16219208eef549c0be5d1abdaf99639c
+          name: price
+          value: "4.50"
+          description: ""
+          disabled: false
+        - id: pair_2390d453329b4313b417455b1645a08e
+          name: ingredient_type_id
+          value: "6"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_69a643b974cb4327a61cfc54de389af0
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1646311670333.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_02934a4f758d47e488bf419aeadbc791
+    parentId: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    modified: 1647044192473
+    created: 1646347591464
+    url: "{{ _.baseUrl }}/ingredients/17"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_7fd9bb38291a4c62963c576caa0f4185
+          name: name
+          value: Maionese
+          description: ""
+        - id: pair_a493656a655b4d4fa65f1da299149953
+          name: description
+          value: Maionese
+          description: ""
+          disabled: false
+        - id: pair_16219208eef549c0be5d1abdaf99639c
+          name: price
+          value: "2.00"
+          description: ""
+          disabled: false
+        - id: pair_2390d453329b4313b417455b1645a08e
+          name: ingredient_type_id
+          value: "5"
+          description: ""
+          disabled: false
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_69a643b974cb4327a61cfc54de389af0
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646309208522.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_99a823bfe703429d9e6b003f21c8c543
+    parentId: fld_908b2bf1f14c47a4a5dcb4754f92e270
+    modified: 1646696612561
+    created: 1646347608315
+    url: "{{ _.baseUrl }}/ingredients/14"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646307977617.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_432cd4df51d34f339d49db7e4cbf32a4
+    parentId: fld_fd6be39aa58f4120bf03059b3a2faa54
+    modified: 1647045904505
+    created: 1646829056910
+    url: "{{ _.baseUrl }}/products/ingredients/3"
+    name: List Ingredients by Product
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646549441838.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_fd6be39aa58f4120bf03059b3a2faa54
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1647042448910
+    created: 1646269793292
+    name: Products
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -999999875
+    _type: request_group
+  - _id: req_3f5c7bdc3b0d4e138e84e653fbbbe430
+    parentId: fld_fd6be39aa58f4120bf03059b3a2faa54
+    modified: 1646832077393
+    created: 1646269957179
+    url: "{{ _.baseUrl }}/products"
+    name: List
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646269957179
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0811bd9a5f7144b2b885dcb89dba19ee
+    parentId: fld_fd6be39aa58f4120bf03059b3a2faa54
+    modified: 1646830727771
+    created: 1646271236917
+    url: "{{ _.baseUrl }}/products/3"
+    name: Get
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1646269957129
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_aed9cdcd414447a486feaddf5d14b8da
+    parentId: fld_fd6be39aa58f4120bf03059b3a2faa54
+    modified: 1647045882672
+    created: 1646271255989
+    url: "{{ _.baseUrl }}/products"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_8a2d380a39bc43de8c7432f2d8d9713d
+          name: name
+          value: Hburger Picanha
+          description: ""
+        - id: pair_ba8b069bccff4518bef0b84630e7b79b
+          name: description
+          value: Pão Gergelim, Hamburger Picanha de 180gr, Cheddar, Alface, Maionese Verde
+          description: ""
+          disabled: false
+        - id: pair_318ad9a3995e4537a236f6cf5a21eeaf
+          name: price
+          value: "29.00"
+          description: ""
+          disabled: false
+        - id: pair_12aa782657024eeeb9eb7f7831c88a2f
+          name: ingredients
+          value: 6,14,15,16,18,20,22
+          description: ""
+          disabled: false
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_06a8c65c09b2484b810eee15b07588fa
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646269957079
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2e209187d2ba403c91553be1f84eefbc
+    parentId: fld_fd6be39aa58f4120bf03059b3a2faa54
+    modified: 1646873375190
+    created: 1646271306107
+    url: "{{ _.baseUrl }}/products/1"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_8a2d380a39bc43de8c7432f2d8d9713d
+          name: name
+          value: Big X2
+          description: ""
+          disabled: true
+        - id: pair_ba8b069bccff4518bef0b84630e7b79b
+          name: description
+          value: ""
+          description: ""
+          disabled: true
+        - id: pair_318ad9a3995e4537a236f6cf5a21eeaf
+          name: price
+          value: "28.01"
+          description: ""
+          disabled: true
+        - id: pair_a3cf84129b2e4c5d93dcebdaecf4f820
+          name: ingredients
+          value: Excluir
+          description: ""
+          disabled: false
+        - id: pair_3e88446390364db08cc8a3fb362ba4a1
+          name: ""
+          value: ""
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_06a8c65c09b2484b810eee15b07588fa
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646269539402
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f4e4c6f92fda45d983cf1276ac6d3579
+    parentId: fld_fd6be39aa58f4120bf03059b3a2faa54
+    modified: 1646866810534
+    created: 1646271369861
+    url: "{{ _.baseUrl }}/products/19"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646269539352
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f4cc1000783044b98756ac5afc6d4c2d
+    parentId: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    modified: 1646696828144
+    created: 1646347831278
+    url: "{{ _.baseUrl }}/orders"
+    name: List
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347710174
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646347681096
+    created: 1646347677869
+    name: Orders
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -999999850
+    _type: request_group
+  - _id: req_f4c9996cc9104ed583cc5540857e11fa
+    parentId: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    modified: 1646347821892
+    created: 1646347710124
+    url: "{{ _.baseUrl }}/orders/me"
+    name: List for user
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347710124
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_091eda72a2384545a66d1ea33c4c22ba
+    parentId: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    modified: 1647306151371
+    created: 1646347854339
+    url: "{{ _.baseUrl }}/orders"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_eb1075afb66848b791b6e2ddd1b0e5a7
+          name: address_id
+          value: "1"
+          description: ""
+        - id: pair_ad38477fd8a844da9e7eccf81c4380b1
+          name: payment_situation_id
+          value: "1"
+          description: ""
+          disabled: true
+        - id: pair_03c491d4f1714786abe0a99ed9e8acce
+          name: products
+          value: 1,3
+          description: ""
+        - id: pair_b7697a5e14624d9da052a57e5bc248a7
+          name: quantities
+          value: 1,3
+          description: ""
+          disabled: false
+        - id: pair_9807ee2a5c7a44cdabc2821f075745bc
+          name: observations
+          value: Sem maionese
+          description: ""
+        - id: pair_7cb6c9b759414eab9470ce91f9c9b49c
+          name: aditions_itens
+          value: 5|8,20
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_d7dca004bda74d5f8155904288f4fb5d
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347710074
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b19f2b03d8e44cf784489087dcbfca34
+    parentId: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    modified: 1646954307369
+    created: 1646951967596
+    url: "{{ _.baseUrl }}/orders"
+    name: Create_teste
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"address_id": 4,
+        	"payment_situation_id": 1,
+        	"observations": 'Sem maionese',
+        	[{
+        		"product_id": 1,
+        		"quantitiy": 1,
+        			[{Aditional_itens:1},
+        			{Aditional_itens:2}],
+        	},{
+        		"product_id": 2,
+        		"quantitiy": 2,
+        		[{
+        			"Aditional_itens":1
+        		}],
+        	}],
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d7dca004bda74d5f8155904288f4fb5d
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347600163.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a208a590310a40a394889bfd6207391c
+    parentId: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    modified: 1647307804672
+    created: 1647307670393
+    url: "{{ _.baseUrl }}/orders/161"
+    name: Update_Payment
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_f34ad400c07447859c374ccac8cb7512
+          name: payment_situation_id
+          value: "3"
+          description: ""
+        - id: pair_0b9bf0a854094278a35f73c4e96a1571
+          name: ""
+          value: ""
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_d7dca004bda74d5f8155904288f4fb5d
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347545208.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1b3482c0db36407aacf3ddd85ff47f18
+    parentId: fld_5a3affacfb93453ba3d2a022bc63e2c1
+    modified: 1646348038331
+    created: 1646348032542
+    url: "{{ _.baseUrl }}/orders/1"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1646347490253
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_3b9c2d1e70ff6bace048495def8e6ee043841ba6
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646432904800
+    created: 1646267622881
+    name: Base Environment
+    data:
+      baseUrl: http://localhost:3000
+      token: "{% response 'body', 'req_01a68db8916c43c9abc87705c353101c',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+    dataPropertyOrder:
+      "&":
+        - baseUrl
+        - token
+    color: null
+    isPrivate: false
+    metaSortKey: 1646267622881
+    _type: environment
+  - _id: jar_3b9c2d1e70ff6bace048495def8e6ee043841ba6
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646267622882
+    created: 1646267622882
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_b75236dbb4614edb83115d1de767009f
+    parentId: wrk_93f88d1a8712459e8d5d419fa3b1e3f2
+    modified: 1646267622876
+    created: 1646267622876
+    fileName: HBurguer - Hcode Lab
+    contents: ""
+    contentType: yaml
+    _type: api_spec

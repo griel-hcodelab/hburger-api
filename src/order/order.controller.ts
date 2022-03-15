@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseIntPipe } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
 import { LoginGuard } from 'src/login/login.guard';
 import { Login } from 'src/login/login.decorator';
+import { checkNumber } from 'utils/checkNumber';
 
 @Controller('orders')
 export class OrderController {
@@ -41,8 +41,10 @@ export class OrderController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateOrderDto: UpdateOrderDto) {
-    return this.orderService.update(+id, updateOrderDto);
+    @Body('payment_situation_id') payment_situation_id: string,) {
+    const order_id = checkNumber(id);
+    const payment_situation = checkNumber(payment_situation_id);
+    return this.orderService.updatePayment(order_id, payment_situation);
   }
 
   @UseGuards(LoginGuard)
