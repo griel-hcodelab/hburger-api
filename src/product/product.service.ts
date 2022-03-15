@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { IngredientsService } from 'src/ingredients/ingredients.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { checkNumber } from 'utils/checkNumber';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -7,7 +8,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 @Injectable()
 export class ProductService {
 
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private ingrediente: IngredientsService) {}
 
   async create({name, description, price, ingredients}: CreateProductDto) {
     
@@ -21,6 +22,17 @@ export class ProductService {
       throw new BadRequestException("Name already exist")
     }
 
+    if (ingredients) {
+      const varing = ingredients.split(",")
+      for (let i = 0; i <= varing.length -1; i++) {
+        const ingredient_Id = checkNumber(varing[i])
+        const ingredient_Exist = await this.ingrediente.findOne(ingredient_Id)
+        if (!ingredient_Exist) {
+          throw new BadRequestException("Ingredient not found")
+        }
+      }
+    }
+
     const product = await this.prisma.product.create({
       data: {
         name,
@@ -32,10 +44,6 @@ export class ProductService {
     if (ingredients) {
       const varing = ingredients.split(",")
       for (let i = 0; i <= varing.length -1; i++) {
-        checkNumber(varing[i])
-      }
-      for (let i = 0; i <= varing.length -1; i++) {
-      
         await this.prisma.productIngredient.create({
           data: {
             product_id: Number(product.id),
@@ -75,58 +83,67 @@ export class ProductService {
       }
     };
     if (price){
-      checkNumber(price)
+      checkNumber(price, "Invalid price")
      
     }
     if (ingredients){
-      const ingredientExist = await this.prisma.productIngredient.findMany({
-        where: {
-          product_id: id
-        }
-      })
-      if (ingredientExist) {
-        await this.prisma.productIngredient.deleteMany({
-          where: {
-            product_id: +id,
-          }
-        })
-      }
-      if (ingredients !== "Excluir") {
+      if (ingredients == "Excluir") {
+        //remove os ingredientes
+        this.removeIngredients(id); 
 
+      } else {
+
+        // Verifica se os ingredientes são válidos
         const varing = ingredients.split(",")
         for (let i = 0; i <= varing.length -1; i++) {
-          checkNumber(varing[i])
+          checkNumber(varing[i],"Ingredient invalid")
         }
-  
-        ingredients.split(",").forEach(async (item) => {
+        // Verifica se os ingredientes existem na Base de dados
+        for (let i = 0; i <= varing.length -1; i++) {
           const itemFound = await this.prisma.ingredient.findUnique({
             where: {
-              id: +item
+              id: +varing[i]
             }
-          })
-          
+          });
           if (!itemFound) {
             throw new BadRequestException("Ingredient not found")
-          }
+          };
+        }
+        await this.removeIngredients(id); 
+        for (let i = 0; i <= varing.length -1; i++) {
           await this.prisma.productIngredient.create({
-              data: {
-                product_id: Number(id),
-                ingredient_id: +item,
-              },     
-            });  
-        });
-      } else {
-        ingredients= null
+            data: {
+              product_id: Number(id),
+              ingredient_id: +varing[i],
+            },     
+          });  
+        }
       }
+     
     }
     return this.prisma.product.update({
       data: {name, description, price },
-      where: {
-        id: checkNumber(id),
-      }
-    });
+        where: {
+          id: checkNumber(id),
+        }
+    }); 
   }
 
+  async removeIngredients(id: number) {
+    const ingredientExist = await this.prisma.productIngredient.findMany({
+      where: {
+        product_id: id
+      }
+    })
+    if (ingredientExist) {
+      await this.prisma.productIngredient.deleteMany({
+        where: {
+          product_id: +id,
+        }
+      })
+    }
+
+  }
   async remove(id: number) {
     if (!await this.findOne(id)) {
       throw new BadRequestException("Product not found")

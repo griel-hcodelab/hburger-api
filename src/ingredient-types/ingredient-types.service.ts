@@ -30,7 +30,7 @@ export class IngredientTypesService {
         })
 
         if(!ingredientType) {
-          throw new NotFoundException("Ingredient Type Não Encontrado")
+          throw new NotFoundException("Não existe este tipo de ingrediente.")
         }
 
 
@@ -59,7 +59,7 @@ export class IngredientTypesService {
     try {
       await this.isThereId(id)
     } catch (e) {
-      throw new NotFoundException("Ingredient Type Não Encontrado")
+      throw new NotFoundException("Não existe este tipo de ingrediente.")
     }
 
     return this.db.ingredientType.findUnique({
@@ -76,7 +76,7 @@ export class IngredientTypesService {
     try {
       await this.isThereId(id)
     } catch (e) {
-      throw new NotFoundException("Ingredient Type Não Encontrado")
+      throw new NotFoundException("Não existe este tipo de ingrediente.")
     }
     
 
@@ -97,7 +97,7 @@ export class IngredientTypesService {
     try {
       await this.isThereId(id)
     } catch (e) {
-      throw new NotFoundException("Ingredient Type Não Encontrado")
+      throw new NotFoundException("Não existe este tipo de ingrediente.")
     }
 
     return this.db.ingredientType.delete({

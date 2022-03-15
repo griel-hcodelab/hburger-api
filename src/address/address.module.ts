@@ -5,11 +5,13 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 import { LoginService } from 'src/login/login.service';
 import { MailModule } from 'src/mail/mail.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     PrismaModule,
     MailModule,
+    HttpModule,
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: process.env.JWT_SECRET,

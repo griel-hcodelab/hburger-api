@@ -40,6 +40,11 @@ Sempre que baixar uma mudança de outra branch, execute o instalador do NPM para
 
 ## Scripts pré-definidos:
 
+    npm run update branch
+Executa o comando *git pull* da Branch informada, em seguida executa o comando *npm install* para atualizar os pacotes caso tenha um pacote novo e por fim executa o comando *prisma generate* para atualizar o index do prisma.
+ 
+--
+
     npm run dev
 Executa o projeto
  

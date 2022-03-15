@@ -69,4 +69,10 @@ export class AddressController {
 
     return this.addressService.delete(id, user_id);
   }
+
+  @Get('cep/:cep')
+  async getZipcode(@Param('cep') cep: string)
+  {
+    return this.addressService.getZipcode(cep);
+  }
 }
