@@ -11,6 +11,7 @@ import { OrderModule } from './order/order.module';
 import { OrderItensModule } from './order-itens/order-itens.module';
 import { PaymentSituationsModule } from './payment-situations/payment-situations.module';
 import { ProductModule } from './product/product.module';
+import { OrderIgredientsModule } from './order-igredients/order-igredients.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ProductModule } from './product/product.module';
     ProductModule,
     OrderModule,
     OrderItensModule,
+    OrderIgredientsModule,
   ],
   controllers: [
     AppController,

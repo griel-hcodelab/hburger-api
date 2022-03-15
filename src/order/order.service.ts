@@ -1,11 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { IngredientsService } from 'src/ingredients/ingredients.service';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { LoginService } from 'src/login/login.service';
+import { OrderItensService } from 'src/order-itens/order-itens.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ProductService } from 'src/product/product.service';
 import { checkNumber } from 'utils/checkNumber';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
 
 @Injectable()
 export class OrderService {
@@ -13,8 +11,7 @@ export class OrderService {
   constructor(
     private db: PrismaService,
     private login: LoginService,
-    private ingredients: IngredientsService,
-    private products: ProductService,
+    private orderItem: OrderItensService,
   ) { }
 
   async create(data: CreateOrderDto, user_id) {
@@ -24,37 +21,30 @@ export class OrderService {
       throw new NotFoundException("Usuário não Encontrado!");
     }
 
-
-    let priceTotal = [];
-
     data.address_id = checkNumber(data.address_id);
-    data.payment_situation_id = checkNumber(data.payment_situation_id);
-    const products = data.products.split(',');
-    const quantity = data.quantities.split(',');
-    const aditionOrder = data.aditions_itens.split('|');
+    const products = data.products;
+    const quantities = data.quantities;
+    const aditionOrders = data.aditions_itens;
 
-    let resultItens;
-    for (let i = 0; i < aditionOrder.length; i++) {
-      let itens = aditionOrder[i].split(',');
-      for (let i = 0; i < itens.length; i++) {
-        resultItens = await this.ingredients.findOne(+itens[i]);
-        if (resultItens) {
-          priceTotal.push(resultItens.price);
-        }
-      }
-    }
+    delete data.products;
+    delete data.quantities;
+    delete data.aditions_itens;
 
-    for (let i = 0; i <= products.length - 1; i++) {
-      const resultProduct = await this.products.findOne(+products[i]);
-      priceTotal.push(resultProduct.price);
-    }
-    const totalPrice = priceTotal.reduce((total, atual) => {
-      return parseFloat(total) + parseFloat(atual)
+    const order = await this.db.order.create({
+      data: {
+        person_id,
+        ...data,
+      },
     });
 
-    for (let i = 0; i <= quantity.length - 1; i++) {
-      quantity[i];
-    }
+    const order_id = order.id;
+
+    const resultItens = await this.orderItem.create({ order_id, products, quantities, aditionOrders });
+
+    await this.update(order_id, resultItens);
+
+    return this.findOne(order_id, user_id);
+
   }
 
   async findAll() {
@@ -101,12 +91,25 @@ export class OrderService {
 
   }
 
-  async update(id: number, data: UpdateOrderDto) {
+  async update(order_id: number, totalPrice: any,) {
     return this.db.order.update({
       where: {
-        id,
+        id: order_id,
       },
-      data,
+      data: {
+        total: totalPrice,
+      }
+    });
+  }
+
+  async updatePayment(order_id: number, payment_situation_id: number) {
+    return this.db.order.update({
+      where: {
+        id: order_id,
+      },
+      data: {
+        payment_situation_id,
+      }
     });
   }
 
