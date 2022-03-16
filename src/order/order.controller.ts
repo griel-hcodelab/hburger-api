@@ -50,6 +50,9 @@ export class OrderController {
   @UseGuards(LoginGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderService.remove(+id);
+
+    const oder_id = checkNumber(id)
+
+    return this.orderService.remove(oder_id);
   }
 }
