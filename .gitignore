@@ -7,6 +7,8 @@ ormconfig production.json
 storage/photos/
 
 
+
+
 # compiled output
 /dist
 /node_modules

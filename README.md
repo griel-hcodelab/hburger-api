@@ -92,7 +92,6 @@ Atualiza o arquivo schema.prisma, após alguma alteração neste arquivo
 
 ## Pedidos:
 - Listar todos os pedidos do usuário, com o número do pedido, data da compra, valor total e itens
-- Não permitir a exclusão de pedidos com mais de 1 dia de criação
 
 ---
 
