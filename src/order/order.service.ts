@@ -58,27 +58,29 @@ export class OrderService {
       throw new NotFoundException("Usuário não Encontrado!");
     }
 
-    return this.db.order.findMany({
+    const order = await this.db.order.findMany({
       where: {
         person_id,
       }
     });
+
+    return order;
   }
 
-  async findOne(id, user_id) {
+  async findOne(order_id, user_id) {
     const person_id = await this.login.getPersonId(user_id);
 
     if (isNaN(person_id)) {
       throw new NotFoundException("Usuário não encontrado!");
     }
 
-    if (isNaN(id)) {
+    if (isNaN(order_id)) {
       throw new NotFoundException("Id da Ordem não encontrada!");
     }
 
     const order = await this.db.order.findFirst({
       where: {
-        id,
+        id: order_id,
         person_id,
       }
     });
@@ -87,8 +89,10 @@ export class OrderService {
       throw new UnauthorizedException("Pedido não autorizado para consulta!");
     }
 
-    return order;
+    delete order.createdAt;
+    delete order.updatedAt;
 
+    return order;
   }
 
   async update(order_id: number, totalPrice: any,) {
@@ -102,7 +106,9 @@ export class OrderService {
     });
   }
 
-  async updatePayment(order_id: number, payment_situation_id: number) {
+  async updatePayment(order_id: number, payment_situation_id: number, user_id: number) {
+    await this.findOne(order_id, user_id);
+
     return this.db.order.update({
       where: {
         id: order_id,
@@ -113,10 +119,25 @@ export class OrderService {
     });
   }
 
-  async remove(id: number) {
-    return this.db.order.delete({
+  async remove(order_id: number, user_id: number) {
+    if (isNaN(user_id)) {
+      throw new NotFoundException("Usuário não encontrado!");
+    }
+
+    if (isNaN(order_id)) {
+      throw new NotFoundException("Id da Ordem não encontrada!");
+    }
+
+    await this.findOne(order_id, user_id);
+
+    const payment_situation_id = 7;
+
+    return this.db.order.update({
       where: {
-        id,
+        id: order_id,
+      },
+      data: {
+        payment_situation_id,
       }
     });
   }

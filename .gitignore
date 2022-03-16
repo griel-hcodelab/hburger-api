@@ -1,6 +1,8 @@
 # Custom
 .env
+.env.production
 ormconfig.json
+ormconfig production.json
 .vscode
 storage/photos/
 
