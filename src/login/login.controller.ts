@@ -28,7 +28,7 @@ import { checkNumber } from 'utils/checkNumber';
 
 @Controller('login')
 export class LoginController {
-  constructor(private readonly loginService: LoginService) {}
+  constructor(private readonly loginService: LoginService) { }
 
   /* Crud do Usuário - Início */
 
@@ -138,7 +138,7 @@ export class LoginController {
       throw new BadRequestException('Você não escolheu uma foto para enviar.');
     }
 
-    return this.loginService.setPhoto(login.user_id, photo);
+    return this.loginService.setPhoto(login.id, photo);
   }
 
   @UseGuards(LoginGuard)
