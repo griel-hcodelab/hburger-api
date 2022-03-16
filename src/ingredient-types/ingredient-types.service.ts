@@ -40,7 +40,24 @@ export class IngredientTypesService {
   //CREATE
 
   async create(data: CreateIngredientTypeDto) {
+<<<<<<< HEAD
     data.repeatable = checkNumber(data.repeatable);
+=======
+    
+    if (data.repeatable) {
+      data.repeatable = checkNumber(data.repeatable)
+    } 
+
+    const ingredient = await this.db.ingredientType.findFirst({
+      where: {
+        name: data.name
+      }
+    });
+
+    if (ingredient) {
+      throw new BadRequestException("Já existe um tipo de ingrediente com esse nome.")
+    }
+>>>>>>> 07cc6b8cb7ff1bd0250e912d567ae81e11f19693
 
     return this.db.ingredientType.create({
       data,

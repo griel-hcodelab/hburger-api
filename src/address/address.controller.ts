@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { Login } from 'src/login/login.decorator';
 import { LoginGuard } from 'src/login/login.guard';
+import { checkNumber } from 'utils/checkNumber';
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
@@ -69,7 +70,13 @@ export class AddressController {
   }
 
   @Get('cep/:cep')
+<<<<<<< HEAD
   async getZipcode(@Param('cep') cep: string) {
+=======
+  async getZipcode(@Param('cep') cep: string)
+  {
+    checkNumber(cep)
+>>>>>>> 07cc6b8cb7ff1bd0250e912d567ae81e11f19693
     return this.addressService.getZipcode(cep);
   }
 }

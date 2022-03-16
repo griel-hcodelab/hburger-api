@@ -17,7 +17,10 @@ export class OrderItensService {
   async create(data: CreateOrderItemDto) {
     const products = data.products.split(',');
     const quantities = data.quantities.split(',');
-    const aditionOrder = data.aditionOrders.split('|');
+    let aditionOrder: string;
+    if (data.aditionOrders) {
+      aditionOrder = data.aditionOrders.split('|');
+    }
     const order_id = data.order_id;
 
     if (products.length != quantities.length) {
@@ -57,6 +60,7 @@ export class OrderItensService {
       const priceProduct = orderItem.price;
       const order_items_id = orderItem.id;
 
+<<<<<<< HEAD
       let itens = aditionOrder[i].split(',');
       let priceItens: number = 0;
 
@@ -68,14 +72,41 @@ export class OrderItensService {
           priceItens += Number(resultItens.price);
 
           await this.orderIgredient.create({ order_items_id, ingredients_id });
+=======
+      if (aditionOrder) {
+
+        let itens = aditionOrder[i].split(",");
+        let priceItens: number = 0;
+  
+        for (let j = 0; j < itens.length; j++) {
+  
+          if (itens[j] != "") {
+            resultItens = await this.ingredients.findOne(+itens[j]);
+  
+            const ingredients_id = resultItens.id;
+            priceItens += Number(resultItens.price);
+  
+            await this.orderIgredient.create({ order_items_id, ingredients_id });
+          }
+>>>>>>> 07cc6b8cb7ff1bd0250e912d567ae81e11f19693
         }
+  
+        priceUpdate = (Number(priceProduct) + (Number(priceItens) * quantity));
+  
+        priceTotal += priceUpdate;
+      } else {
+        priceTotal += Number(priceProduct);
       }
 
+<<<<<<< HEAD
       priceUpdate = Number(priceProduct) + Number(priceItens) * quantity;
 
       priceTotal += priceUpdate;
 
       await this.update(order_items_id, priceUpdate);
+=======
+      await this.update(order_items_id, priceUpdate)
+>>>>>>> 07cc6b8cb7ff1bd0250e912d567ae81e11f19693
     }
 
     return priceTotal;
