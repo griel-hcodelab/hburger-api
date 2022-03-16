@@ -6,19 +6,9 @@ import { LoginModule } from 'src/login/login.module';
 import { IngredientsModule } from 'src/ingredients/ingredients.module';
 
 @Module({
-  imports: [
-    PrismaModule,
-    LoginModule,
-    IngredientsModule
-  ],
-  controllers: [
-    ProductController
-  ],
-  providers: [
-    ProductService
-  ],
-  exports: [
-    ProductService
-  ],
+  imports: [PrismaModule, LoginModule, IngredientsModule],
+  controllers: [ProductController],
+  providers: [ProductService],
+  exports: [ProductService],
 })
-export class ProductModule { }
+export class ProductModule {}

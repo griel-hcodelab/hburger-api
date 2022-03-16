@@ -1,15 +1,15 @@
-import { IsNumberString, IsString } from "class-validator";
+import { IsNumberString, IsString } from 'class-validator';
 
 export class CreateOrderDto {
-    @IsString()
-    observations?: string;
+  @IsString()
+  observations?: string;
 
-    @IsNumberString()
-    address_id: number;
+  @IsNumberString()
+  address_id: number;
 
-    products: string;
+  products: string;
 
-    quantities: string;
+  quantities: string;
 
-    aditions_itens: any;
+  aditions_itens: any;
 }

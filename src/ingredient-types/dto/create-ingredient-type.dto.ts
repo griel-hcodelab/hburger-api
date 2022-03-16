@@ -1,12 +1,12 @@
-import {IsNotEmpty, IsString } from "class-validator"
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateIngredientTypeDto {
   @IsString()
   @IsNotEmpty()
-  name: string
-  
-  @IsString()
-  description: string
+  name: string;
 
-  repeatable: number
+  @IsString()
+  description: string;
+
+  repeatable: number;
 }

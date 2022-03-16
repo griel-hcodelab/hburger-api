@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { LoginGuard } from 'src/login/login.guard';
@@ -7,13 +17,11 @@ import { checkNumber } from 'utils/checkNumber';
 
 @Controller('orders')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) { }
+  constructor(private readonly orderService: OrderService) {}
 
   @UseGuards(LoginGuard)
   @Post()
-  create(
-    @Body() createOrderDto: CreateOrderDto,
-    @Login('id') user_id) {
+  create(@Body() createOrderDto: CreateOrderDto, @Login('id') user_id) {
     return this.orderService.create(createOrderDto, user_id);
   }
 
@@ -31,9 +39,7 @@ export class OrderController {
 
   @UseGuards(LoginGuard)
   @Get(':id')
-  findOne(
-    @Param('id', ParseIntPipe) order_id: Number,
-    @Login('id') user_id) {
+  findOne(@Param('id', ParseIntPipe) order_id: number, @Login('id') user_id) {
     return this.orderService.findOne(order_id, user_id);
   }
 
@@ -42,17 +48,20 @@ export class OrderController {
   update(
     @Param('id') id: string,
     @Body('payment_situation_id') payment_situation_id: string,
-    @Login('id') user_id) {
+    @Login('id') user_id,
+  ) {
     const order_id = checkNumber(id);
     const payment_situation = checkNumber(payment_situation_id);
-    return this.orderService.updatePayment(order_id, payment_situation, user_id);
+    return this.orderService.updatePayment(
+      order_id,
+      payment_situation,
+      user_id,
+    );
   }
 
   @UseGuards(LoginGuard)
   @Delete(':id')
-  remove(
-    @Param('id') id: string,
-    @Login('id') user_id) {
+  remove(@Param('id') id: string, @Login('id') user_id) {
     const order_id = checkNumber(id);
     return this.orderService.remove(order_id, user_id);
   }
