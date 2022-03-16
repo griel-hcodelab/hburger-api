@@ -127,11 +127,12 @@ export class LoginController {
   @Put('photo')
   async setPhoto(@Login() login, @UploadedFile() photo: Express.Multer.File)
   {
+
     if (!photo) {
       throw new BadRequestException('Você não escolheu uma foto para enviar.');
     }
 
-    return this.loginService.setPhoto(login.user_id, photo);
+    return this.loginService.setPhoto(login.id, photo);
   }
 
   @UseGuards(LoginGuard)

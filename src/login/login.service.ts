@@ -259,6 +259,8 @@ export class LoginService {
 
 	async setPhoto(id: number, file: Express.Multer.File)
 	{
+
+
 		if (!['image/png', 'image/jpeg'].includes(file.mimetype)) {
 			throw new BadRequestException('Invalid file type.');
 		}
