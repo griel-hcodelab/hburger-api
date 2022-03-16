@@ -28,7 +28,7 @@ import { checkNumber } from 'utils/checkNumber';
 
 @Controller('login')
 export class LoginController {
-  constructor(private readonly loginService: LoginService) { }
+  constructor(private readonly loginService: LoginService) {}
 
   /* Crud do Usuário - Início */
 
