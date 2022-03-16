@@ -26,4 +26,4 @@ import { OrderIgredientsModule } from 'src/order-igredients/order-igredients.mod
   providers: [OrderItensService],
   exports: [OrderItensService],
 })
-export class OrderItensModule { }
+export class OrderItensModule {}

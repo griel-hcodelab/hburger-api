@@ -13,14 +13,11 @@ export class CreateLoginDto {
   @IsNotEmpty()
   name: string;
 
-
   photo: string;
 
   birthAt: string;
 
-
   document: string;
-
 
   phone: string;
 

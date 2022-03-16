@@ -7,13 +7,12 @@ import { CreateOrderItemDto } from './dto/create-order-item.dto';
 
 @Injectable()
 export class OrderItensService {
-
   constructor(
     private db: PrismaService,
     private ingredients: IngredientsService,
     private products: ProductService,
     private orderIgredient: OrderIgredientsService,
-  ) { }
+  ) {}
 
   async create(data: CreateOrderItemDto) {
     const products = data.products.split(',');
@@ -22,7 +21,7 @@ export class OrderItensService {
     const order_id = data.order_id;
 
     if (products.length != quantities.length) {
-      throw new BadRequestException("Quantidade diferente de itens");
+      throw new BadRequestException('Quantidade diferente de itens');
     }
 
     let orderItem;
@@ -41,7 +40,7 @@ export class OrderItensService {
 
       quantity = Number(quantities[i]);
 
-      price = (resultProduct.price * quantity);
+      price = resultProduct.price * quantity;
       product_name = resultProduct.name;
       product_id = resultProduct.id;
 
@@ -58,13 +57,11 @@ export class OrderItensService {
       const priceProduct = orderItem.price;
       const order_items_id = orderItem.id;
 
-
-      let itens = aditionOrder[i].split(",");
+      let itens = aditionOrder[i].split(',');
       let priceItens: number = 0;
 
       for (let j = 0; j < itens.length; j++) {
-
-        if (itens[j] != "") {
+        if (itens[j] != '') {
           resultItens = await this.ingredients.findOne(+itens[j]);
 
           const ingredients_id = resultItens.id;
@@ -74,11 +71,11 @@ export class OrderItensService {
         }
       }
 
-      priceUpdate = (Number(priceProduct) + (Number(priceItens) * quantity));
+      priceUpdate = Number(priceProduct) + Number(priceItens) * quantity;
 
       priceTotal += priceUpdate;
 
-      await this.update(order_items_id, priceUpdate)
+      await this.update(order_items_id, priceUpdate);
     }
 
     return priceTotal;
@@ -91,7 +88,7 @@ export class OrderItensService {
       },
       data: {
         price,
-      }
+      },
     });
   }
 
@@ -103,7 +100,7 @@ export class OrderItensService {
     return this.db.orderItem.findMany({
       where: {
         order_id,
-      }
+      },
     });
   }
 
@@ -111,7 +108,7 @@ export class OrderItensService {
     return this.db.orderItem.delete({
       where: {
         id,
-      }
+      },
     });
   }
 }

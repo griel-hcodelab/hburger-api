@@ -1,40 +1,43 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { Login } from 'src/login/login.decorator';
 import { LoginGuard } from 'src/login/login.guard';
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
 
-@Controller("addresses")
+@Controller('addresses')
 export class AddressController {
-
-  constructor(private addressService: AddressService) { }
+  constructor(private addressService: AddressService) {}
 
   @UseGuards(LoginGuard)
   @Get()
   async listAll() {
-    return this.addressService.findAll()
+    return this.addressService.findAll();
   }
 
   @UseGuards(LoginGuard)
   @Get('my-addresses')
-  async listByPerson(
-    @Login('id') user_id,
-  ) {
-
+  async listByPerson(@Login('id') user_id) {
     return this.addressService.findByPerson(user_id);
-
   }
 
   @UseGuards(LoginGuard)
   @Get(':id')
   async getById(
     @Param('id', ParseIntPipe) id: number,
-    @Login('id', ParseIntPipe) user_id: number
+    @Login('id', ParseIntPipe) user_id: number,
   ) {
-
     return this.addressService.findMyAddress(id, user_id);
-
   }
 
   @UseGuards(LoginGuard)
@@ -43,9 +46,7 @@ export class AddressController {
     @Body() data: CreateAddressDto,
     @Login('id', ParseIntPipe) user_id: number,
   ) {
-
     return this.addressService.create(user_id, data);
-
   }
 
   @UseGuards(LoginGuard)
@@ -55,9 +56,7 @@ export class AddressController {
     @Param('id', ParseIntPipe) id: number,
     @Login('id', ParseIntPipe) user_id: number,
   ) {
-
     return this.addressService.update(id, user_id, data);
-
   }
 
   @UseGuards(LoginGuard)
@@ -66,13 +65,11 @@ export class AddressController {
     @Param('id', ParseIntPipe) id: number,
     @Login('id', ParseIntPipe) user_id: number,
   ) {
-
     return this.addressService.delete(id, user_id);
   }
 
   @Get('cep/:cep')
-  async getZipcode(@Param('cep') cep: string)
-  {
+  async getZipcode(@Param('cep') cep: string) {
     return this.addressService.getZipcode(cep);
   }
 }

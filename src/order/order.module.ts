@@ -19,4 +19,4 @@ import { OrderItensModule } from 'src/order-itens/order-itens.module';
   providers: [OrderService],
   exports: [OrderService],
 })
-export class OrderModule { }
+export class OrderModule {}

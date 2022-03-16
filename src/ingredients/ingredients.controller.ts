@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
@@ -26,12 +36,15 @@ export class IngredientsController {
 
   @Get('/by-type/:id')
   async findByTypeName(@Param('id') id: string) {
-    return this.ingredientsService.findByType(+id)
+    return this.ingredientsService.findByType(+id);
   }
 
   @UseGuards(LoginGuard)
   @Patch('/:id')
-  async update(@Param('id') id: string, @Body() updateIngredientDto: UpdateIngredientDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateIngredientDto: UpdateIngredientDto,
+  ) {
     return this.ingredientsService.update(+id, updateIngredientDto);
   }
 

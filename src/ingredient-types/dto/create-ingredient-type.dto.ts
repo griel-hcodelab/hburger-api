@@ -1,11 +1,11 @@
-import {IsString } from "class-validator"
+import { IsString } from 'class-validator';
 
 export class CreateIngredientTypeDto {
   @IsString()
-  name: string
-  
-  @IsString()
-  description: string
+  name: string;
 
-  repeatable: number
+  @IsString()
+  description: string;
+
+  repeatable: number;
 }

@@ -5,8 +5,7 @@ import { UpdateOrderIgredientDto } from './dto/update-order-igredient.dto';
 
 @Injectable()
 export class OrderIgredientsService {
-
-  constructor(private db: PrismaService) { }
+  constructor(private db: PrismaService) {}
 
   async create(data: CreateOrderIgredientDto) {
     await this.db.orderIngredient.create({
