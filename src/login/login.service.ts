@@ -350,7 +350,12 @@ export class LoginService {
 	}
 
 	async recovery(email: string) {
-		const { id, Person } = await this.getByEmail(email);
+
+		const data = await this.getByEmail(email);
+
+		if (data) {
+
+		const { id, Person } = data;
 
 		const { name } = Person[0];
 
@@ -380,6 +385,13 @@ export class LoginService {
 				},
 			});
 		}
+
+		}
+
+	
+
+
+		
 
 		return {
 			message: `Se ${email} existir em nossa base de dados, será enviado um e-mail com as instruções para mudar a sua senha. As instruções expiram em uma hora.`,
