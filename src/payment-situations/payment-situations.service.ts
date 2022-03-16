@@ -5,44 +5,44 @@ import { UpdatePaymentSituationDto } from './dto/update-payment-situation.dto';
 
 @Injectable()
 export class PaymentSituationsService {
-    constructor (private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
-    async findAll() {
-        return this.prisma.paymentSituation.findMany();
+  async findAll() {
+    return this.prisma.paymentSituation.findMany();
+  }
+
+  async findOne(id: number) {
+    const paymentSituation = await this.prisma.paymentSituation.findUnique({
+      where: { id },
+    });
+
+    if (!paymentSituation) {
+      throw new NotFoundException('Situação de Pagamento não encontrada.');
     }
 
-    async findOne(id: number) {
-        const paymentSituation = await this.prisma.paymentSituation.findUnique({
-            where: { id },
-        });
+    return paymentSituation;
+  }
 
-        if (! paymentSituation) {
-            throw new NotFoundException('Situação de Pagamento não encontrada.');
-        }
+  async create(data: CreatePaymentSituationDto) {
+    return this.prisma.paymentSituation.create({
+      data,
+    });
+  }
 
-        return paymentSituation;
-    }
+  async update(id: number, data: UpdatePaymentSituationDto) {
+    await this.findOne(id);
 
-    async create(data: CreatePaymentSituationDto) {
-        return this.prisma.paymentSituation.create({
-            data
-        });
-    }
+    return this.prisma.paymentSituation.update({
+      where: { id },
+      data,
+    });
+  }
 
-    async update(id: number, data: UpdatePaymentSituationDto) {
-        await this.findOne(id);
+  async delete(id: number) {
+    await this.findOne(id);
 
-        return this.prisma.paymentSituation.update({
-            where: { id },
-            data,
-        });
-    }
-
-    async delete(id: number) {
-        await this.findOne(id);
-
-        return this.prisma.paymentSituation.delete({
-            where: { id },
-        });
-    }
+    return this.prisma.paymentSituation.delete({
+      where: { id },
+    });
+  }
 }

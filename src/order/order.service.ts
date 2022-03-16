@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { LoginService } from 'src/login/login.service';
 import { OrderItensService } from 'src/order-itens/order-itens.service';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -7,18 +11,17 @@ import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
 export class OrderService {
-
   constructor(
     private db: PrismaService,
     private login: LoginService,
     private orderItem: OrderItensService,
-  ) { }
+  ) {}
 
   async create(data: CreateOrderDto, user_id) {
     const person_id = await this.login.getPersonId(user_id);
 
     if (isNaN(person_id)) {
-      throw new NotFoundException("Usuário não Encontrado!");
+      throw new NotFoundException('Usuário não Encontrado!');
     }
 
     data.address_id = checkNumber(data.address_id);
@@ -39,12 +42,16 @@ export class OrderService {
 
     const order_id = order.id;
 
-    const resultItens = await this.orderItem.create({ order_id, products, quantities, aditionOrders });
+    const resultItens = await this.orderItem.create({
+      order_id,
+      products,
+      quantities,
+      aditionOrders,
+    });
 
     await this.update(order_id, resultItens);
 
     return this.findOne(order_id, user_id);
-
   }
 
   async findAll() {
@@ -55,13 +62,13 @@ export class OrderService {
     const person_id = await this.login.getPersonId(user_id);
 
     if (isNaN(person_id)) {
-      throw new NotFoundException("Usuário não Encontrado!");
+      throw new NotFoundException('Usuário não Encontrado!');
     }
 
     const order = await this.db.order.findMany({
       where: {
         person_id,
-      }
+      },
     });
 
     return order;
@@ -71,22 +78,22 @@ export class OrderService {
     const person_id = await this.login.getPersonId(user_id);
 
     if (isNaN(person_id)) {
-      throw new NotFoundException("Usuário não encontrado!");
+      throw new NotFoundException('Usuário não encontrado!');
     }
 
     if (isNaN(order_id)) {
-      throw new NotFoundException("Id da Ordem não encontrada!");
+      throw new NotFoundException('Id da Ordem não encontrada!');
     }
 
     const order = await this.db.order.findFirst({
       where: {
         id: order_id,
         person_id,
-      }
+      },
     });
 
     if (!order) {
-      throw new UnauthorizedException("Pedido não autorizado para consulta!");
+      throw new UnauthorizedException('Pedido não autorizado para consulta!');
     }
 
     delete order.createdAt;
@@ -95,18 +102,22 @@ export class OrderService {
     return order;
   }
 
-  async update(order_id: number, totalPrice: any,) {
+  async update(order_id: number, totalPrice: any) {
     return this.db.order.update({
       where: {
         id: order_id,
       },
       data: {
         total: totalPrice,
-      }
+      },
     });
   }
 
-  async updatePayment(order_id: number, payment_situation_id: number, user_id: number) {
+  async updatePayment(
+    order_id: number,
+    payment_situation_id: number,
+    user_id: number,
+  ) {
     await this.findOne(order_id, user_id);
 
     return this.db.order.update({
@@ -115,17 +126,17 @@ export class OrderService {
       },
       data: {
         payment_situation_id,
-      }
+      },
     });
   }
 
   async remove(order_id: number, user_id: number) {
     if (isNaN(user_id)) {
-      throw new NotFoundException("Usuário não encontrado!");
+      throw new NotFoundException('Usuário não encontrado!');
     }
 
     if (isNaN(order_id)) {
-      throw new NotFoundException("Id da Ordem não encontrada!");
+      throw new NotFoundException('Id da Ordem não encontrada!');
     }
 
     await this.findOne(order_id, user_id);
@@ -138,7 +149,7 @@ export class OrderService {
       },
       data: {
         payment_situation_id,
-      }
+      },
     });
   }
 }

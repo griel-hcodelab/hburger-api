@@ -27,11 +27,7 @@ import { OrderIgredientsModule } from './order-igredients/order-igredients.modul
     OrderItensModule,
     OrderIgredientsModule,
   ],
-  controllers: [
-    AppController,
-  ],
-  providers: [
-    AppService
-  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateOrderIgredientDto } from './dto/create-order-igredient.dto';
-import { UpdateOrderIgredientDto } from './dto/update-order-igredient.dto';
 
 @Injectable()
 export class OrderIgredientsService {
-
-  constructor(private db: PrismaService) { }
+  constructor(private db: PrismaService) {}
 
   async create(data: CreateOrderIgredientDto) {
     await this.db.orderIngredient.create({
@@ -23,7 +21,7 @@ export class OrderIgredientsService {
     return `This action returns a #${id} orderIgredient`;
   }
 
-  update(id: number, data: UpdateOrderIgredientDto) {
+  update(id: number) {
     return `This action updates a #${id} orderIgredient`;
   }
 
