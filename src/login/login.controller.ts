@@ -138,7 +138,7 @@ export class LoginController {
       throw new BadRequestException('Você não escolheu uma foto para enviar.');
     }
 
-    return this.loginService.setPhoto(login.user_id, photo);
+    return this.loginService.setPhoto(login.id, photo);
   }
 
   @UseGuards(LoginGuard)
