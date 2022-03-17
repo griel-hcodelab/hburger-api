@@ -326,6 +326,7 @@ export class LoginService {
 	}
 
 	/* Crud de Fotos do Usuário - Fim */
+	
 
 	/* Recuperação de senha - Início */
 
