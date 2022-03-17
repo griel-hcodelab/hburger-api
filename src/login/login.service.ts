@@ -339,35 +339,39 @@ export class LoginService {
   }
 
   async recovery(email: string) {
-    const { id, Person } = await this.getByEmail(email);
+    const data = await this.getByEmail(email);
 
-    const { name } = Person[0];
+    if (data) {
+      const { id, Person } = data;
 
-    if (id) {
-      const token = await this.jwt.sign(
-        { id },
-        {
-          expiresIn: '1hr',
-        },
-      );
+      const { name } = Person[0];
 
-      await this.db.passwordRecovery.create({
-        data: {
-          token,
-          user_id: +id,
-        },
-      });
+      if (id) {
+        const token = await this.jwt.sign(
+          { id },
+          {
+            expiresIn: '1hr',
+          },
+        );
 
-      await this.mail.send({
-        to: email,
-        subject: 'Recuperação de senha - HBurger',
-        template: 'forget',
-        data: {
-          name,
-          token,
-          url: `https://www.hburger.com/login/reset?token=${token}`,
-        },
-      });
+        await this.db.passwordRecovery.create({
+          data: {
+            token,
+            user_id: +id,
+          },
+        });
+
+        await this.mail.send({
+          to: email,
+          subject: 'Recuperação de senha - HBurger',
+          template: 'forget',
+          data: {
+            name,
+            token,
+            url: `https://www.hburger.com/login/reset?token=${token}`,
+          },
+        });
+      }
     }
 
     return {
