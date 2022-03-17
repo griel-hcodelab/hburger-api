@@ -39,7 +39,7 @@ export class OrderController {
 
   @UseGuards(LoginGuard)
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) order_id: Number, @Login('id') user_id) {
+  findOne(@Param('id', ParseIntPipe) order_id: number, @Login('id') user_id) {
     return this.orderService.findOne(order_id, user_id);
   }
 

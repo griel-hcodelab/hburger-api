@@ -70,13 +70,8 @@ export class AddressController {
   }
 
   @Get('cep/:cep')
-<<<<<<< HEAD
   async getZipcode(@Param('cep') cep: string) {
-=======
-  async getZipcode(@Param('cep') cep: string)
-  {
-    checkNumber(cep)
->>>>>>> 07cc6b8cb7ff1bd0250e912d567ae81e11f19693
+    checkNumber(cep);
     return this.addressService.getZipcode(cep);
   }
 }

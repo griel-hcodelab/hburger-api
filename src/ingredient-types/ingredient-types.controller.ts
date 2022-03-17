@@ -7,7 +7,6 @@ import {
   Param,
   Delete,
   UseGuards,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { IngredientTypesService } from './ingredient-types.service';
 import { CreateIngredientTypeDto } from './dto/create-ingredient-type.dto';

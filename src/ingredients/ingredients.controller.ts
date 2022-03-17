@@ -6,7 +6,6 @@ import {
   Patch,
   Param,
   Delete,
-  Query,
   UseGuards,
 } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
