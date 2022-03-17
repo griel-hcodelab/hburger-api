@@ -55,7 +55,6 @@ export class IngredientTypesService {
         'Já existe um tipo de ingrediente com esse nome.',
       );
     }
->>>>>>> 07cc6b8cb7ff1bd0250e912d567ae81e11f19693
 
     return this.db.ingredientType.create({
       data,
