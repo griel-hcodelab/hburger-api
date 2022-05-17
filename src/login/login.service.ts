@@ -368,7 +368,7 @@ export class LoginService {
           data: {
             name,
             token,
-            url: `https://www.hburger.com/login/reset?token=${token}`,
+            url: `https://www.hburger.com/reset?token=${token}`,
           },
         });
       }
