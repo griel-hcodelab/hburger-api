@@ -7,7 +7,7 @@ export class CreateOrderDto {
 
   address_id?: number;
 
-  products: string;
+  products: any;
 
   quantities?: string;
 

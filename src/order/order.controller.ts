@@ -22,6 +22,7 @@ export class OrderController {
   @UseGuards(LoginGuard)
   @Post()
   create(@Body() createOrderDto: CreateOrderDto, @Login('id') user_id) {
+    console.log('controller',createOrderDto)
     return this.orderService.create(createOrderDto, user_id);
   }
 

@@ -15,6 +15,7 @@ export class OrderItensService {
   ) {}
 
   async create(data: CreateOrderItemDto) {
+    
     const products = data.products.split(',');
 
     let aditionOrder: string;
