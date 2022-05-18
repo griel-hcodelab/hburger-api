@@ -15,6 +15,7 @@ export class Orders1646357034866 implements MigrationInterface {
                 {
                     name: 'address_id',
                     type: 'int',
+                    isNullable: true,
                 },
                 {
                     name: 'payment_situation_id',

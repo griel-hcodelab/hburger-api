@@ -16,16 +16,14 @@ export class OrderItensService {
 
   async create(data: CreateOrderItemDto) {
     const products = data.products.split(',');
-    const quantities = data.quantities.split(',');
+
     let aditionOrder: string;
     if (data.aditionOrders) {
       aditionOrder = data.aditionOrders.split('|');
     }
     const order_id = data.order_id;
 
-    if (products.length != quantities.length) {
-      throw new BadRequestException('Quantidade diferente de itens');
-    }
+
 
     let orderItem;
     let price = 0;
@@ -41,7 +39,7 @@ export class OrderItensService {
     for (let i = 0; i <= products.length - 1; i++) {
       resultProduct = await this.products.findOne(+products[i]);
 
-      quantity = Number(quantities[i]);
+      quantity = 1;
 
       price = resultProduct.price * quantity;
       product_name = resultProduct.name;
