@@ -18,9 +18,7 @@ export class OrderService {
   ) {}
 
   async create(data: CreateOrderDto, user_id) {
-    const person_id = await this.login.getPersonId(user_id);
-
-    console.log('service',data)
+    const person_id = await this.login.getPersonId(user_id)
 
     if (isNaN(person_id)) {
       throw new NotFoundException('Usuário não Encontrado!');
