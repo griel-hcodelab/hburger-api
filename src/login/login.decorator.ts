@@ -10,7 +10,7 @@ export const Login = createParamDecorator(
         return null;
       }
     } else {
-      return request.user;
+      return request.auth;
     }
   },
 );

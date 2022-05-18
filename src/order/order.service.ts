@@ -24,7 +24,9 @@ export class OrderService {
       throw new NotFoundException('Usuário não Encontrado!');
     }
 
-    data.address_id = checkNumber(data.address_id);
+    if(data.address_id) {
+      data.address_id = checkNumber(data.address_id);
+    }
     const products = data.products;
     const quantities = data.quantities;
     const aditionOrders = data.aditions_itens;

@@ -5,6 +5,6 @@ export class CreateOrderItemDto {
   order_id: number;
 
   products: any;
-  quantities: any;
+  quantities?: any;
   aditionOrders: any;
 }
