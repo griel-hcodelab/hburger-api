@@ -57,7 +57,11 @@ export class OrderService {
   }
 
   async findAll() {
-    return this.db.order.findMany();
+    return this.db.order.findMany({
+      orderBy: {
+        id: 'desc',
+      }
+    });
   }
 
   async findMe(user_id) {
@@ -71,6 +75,9 @@ export class OrderService {
       where: {
         person_id,
       },
+      orderBy: {
+        id: 'desc'
+      }
     });
 
     return order;
