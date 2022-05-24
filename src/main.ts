@@ -13,11 +13,11 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
-	app.enableCors({
-		"origin": "*",
-	  });
+  app.enableCors({
+    origin: '*',
+  });
 
-	await app.listen(3000);
+  await app.listen(3000);
 
   welcome();
 }

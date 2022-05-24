@@ -18,13 +18,13 @@ export class OrderService {
   ) {}
 
   async create(data: CreateOrderDto, user_id) {
-    const person_id = await this.login.getPersonId(user_id)
+    const person_id = await this.login.getPersonId(user_id);
 
     if (isNaN(person_id)) {
       throw new NotFoundException('Usuário não Encontrado!');
     }
 
-    if(data.address_id) {
+    if (data.address_id) {
       data.address_id = checkNumber(data.address_id);
     }
     const products = data.products;
@@ -60,7 +60,7 @@ export class OrderService {
     return this.db.order.findMany({
       orderBy: {
         id: 'desc',
-      }
+      },
     });
   }
 
@@ -76,8 +76,8 @@ export class OrderService {
         person_id,
       },
       orderBy: {
-        id: 'desc'
-      }
+        id: 'desc',
+      },
     });
 
     return order;
